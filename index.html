@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <div class="page-bg">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
   <header class="site-header">
     <div class="container header-inner">
       <h1 class="logo">Sedia Customer WEB - アウトレット</h1>
@@ -19,38 +25,38 @@
     <!-- Hero / ランディングTOP -->
     <section class="hero">
       <div class="container hero-inner">
-        <div class="hero-text">
+        <div class="hero-text reveal-up">
           <h2>お得に、必要な商品を。会員様限定のアウトレットセール</h2>
           <p>当社の長期在庫・型落ち品・サンプル品などを、セディアカスタマーWEB会員様限定でアウトレット価格にて販売します。数量限定、早い者勝ちです。</p>
 
-          <!-- CTA: 申込ページへ（必ず実運用URLに差し替えてください） -->
-          <p class="note">※以下の「申込へ進む」ボタンは、セディアカスタマーWEB内の申込ページへ移動します。ログインしていない場合はログイン画面に遷移します。</p>
+          <p class="note">※「申込へ進む」ボタンは、セディアカスタマーWEB内の申込ページへ移動します。ログインしていない場合はログイン画面に遷移します。</p>
           <div class="cta-row">
-            <a id="applyBtn" class="btn primary" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">申込へ進む（会員専用）</a>
+            <a id="applyBtn" class="btn primary ripple" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">申込へ進む（会員専用）</a>
             <a class="btn ghost" href="#how-it-works">申込の流れを見る</a>
           </div>
         </div>
 
-        <div class="hero-image">
+        <div class="hero-image reveal-right">
           <img src="assets/screen1.svg" alt="アウトレット サンプル画面イメージ" />
         </div>
       </div>
+      <div class="wave-sep" aria-hidden="true"></div>
     </section>
 
     <!-- 特長 -->
     <section id="features" class="features container">
-      <h3>アウトレットの特長</h3>
+      <h3 class="reveal-up">アウトレットの特長</h3>
       <ul class="features-list">
-        <li>
+        <li class="card reveal-up delay-1">
           <strong>会員限定：</strong>セディアカスタマーWEBにご登録いただいている法人/担当者様のみ利用可能です。
         </li>
-        <li>
+        <li class="card reveal-up delay-2">
           <strong>アウトレット価格：</strong>通常価格より大幅割引の商品を限定数でご提供。
         </li>
-        <li>
+        <li class="card reveal-up delay-3">
           <strong>在庫一掃：</strong>長期在庫や型落ち、サンプルなどをアウトレット品として掲載。
         </li>
-        <li>
+        <li class="card reveal-up delay-4">
           <strong>簡単申込：</strong>申込フォームから購入申請 → 弊社で確認し、購入確定の連絡を差し上げます。
         </li>
       </ul>
@@ -58,19 +64,19 @@
 
     <!-- 画面イメージ -->
     <section id="screens" class="screens container">
-      <h3>画面イメージ</h3>
-      <p class="muted">下のスクリーンショットはイメージです。実際のUIはシステムのバージョンにより変わる場合があります。</p>
+      <h3 class="reveal-up">画面イメージ</h3>
+      <p class="muted reveal-up delay-1">下のスクリーンショットはイメージです。実際のUIは変わる場合があります。</p>
       <div class="screen-grid">
-        <figure>
+        <figure class="reveal-up delay-2">
           <img src="assets/screen1.svg" alt="アウトレット一覧画面のイメージ" />
           <figcaption>アウトレット一覧（絞り込み・価格表示）</figcaption>
         </figure>
-        <figure>
+        <figure class="reveal-up delay-3">
           <img src="assets/screen2.svg" alt="商品詳細画面イメージ" />
           <figcaption>商品詳細（数量・状態・申込ボタン）</figcaption>
         </figure>
-        <figure>
-          <img src="assets/screen3.svg" alt="申込フォームイメージ" />
+        <figure class="reveal-up delay-4">
+          <img src="assets/screen3.svg" alt="申込フォームサンプル" />
           <figcaption>申込フォーム（確認の上、確定連絡）</figcaption>
         </figure>
       </div>
@@ -78,35 +84,35 @@
 
     <!-- 申込の流れ -->
     <section id="how-it-works" class="flow container">
-      <h3>申込の流れ</h3>
+      <h3 class="reveal-up">申込の流れ</h3>
       <ol class="flow-list">
-        <li>
+        <li class="card reveal-up delay-1">
           <strong>1. 会員でログイン</strong>
           <p>セディアカスタマーWEBにログインしてください（未登録の方はお問い合わせください）。</p>
         </li>
-        <li>
+        <li class="card reveal-up delay-2">
           <strong>2. アウトレット一覧から商品を選択</strong>
           <p>商品状態・数量・価格を確認し、購入申込したい商品を選びます。</p>
         </li>
-        <li>
+        <li class="card reveal-up delay-3">
           <strong>3. 申込フォームに必要事項を入力</strong>
           <p>購入希望数量・納入先・連絡先などを入力して送信します。</p>
         </li>
-        <li>
+        <li class="card reveal-up delay-4">
           <strong>4. 弊社で確認 → 購入確定</strong>
           <p>在庫・価格を確認し、購入確定のご連絡（メール/システム内メッセージ）を行います。確定後、出荷/請求の手続きを開始します。</p>
         </li>
       </ol>
 
-      <div class="cta-centered">
-        <a class="btn primary large" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">今すぐ申込へ（会員専用）</a>
+      <div class="cta-centered reveal-up delay-5">
+        <a class="btn primary large ripple" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">今すぐ申込へ（会員専用）</a>
       </div>
     </section>
 
     <!-- よくある質問（簡易）-->
     <section id="faq" class="faq container">
-      <h3>よくある質問（FAQ）</h3>
-      <dl>
+      <h3 class="reveal-up">よくある質問（FAQ）</h3>
+      <dl class="reveal-up delay-1">
         <dt>Q. 会員でないと申し込めませんか？</dt>
         <dd>A. はい。本ページの申込はセディアカスタマーWEB会員様限定です。未登録の方は営業担当までお問い合わせください。</dd>
 
@@ -124,11 +130,6 @@
     </footer>
   </main>
 
-  <script>
-    // 追跡用クリックイベント（必要なら編集してください）
-    document.getElementById('applyBtn')?.addEventListener('click', function () {
-      try { console.log('アウトレット申込ボタンがクリックされました'); } catch(e){}
-    });
-  </script>
+  <script src="assets/scripts.js"></script>
 </body>
 </html>
