@@ -110,7 +110,7 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <h1 class="logo">Sedia Customer WEB - アウトレット</h1>
+      <h1 class="logo">Sedia カスタマー WEB - アウトレット</h1>
       <p class="tag">会員限定｜長期在庫をアウトレット価格でご提供</p>
     </div>
   </header>
@@ -120,11 +120,15 @@
       <div class="container hero-inner">
         <div class="hero-text reveal-up">
           <h2>お得に、必要な商品を。会員様限定のアウトレットセール</h2>
-          <p>当社の長期在庫・型落ち品・サンプル品などを、セディアカスタマーWEB会員様限定でアウトレット価格にて販売します。数量限定、早い者勝ちです。</p>
-          <p class="note">※「申込へ進む」ボタンは、セディアカスタマーWEB内の申込ページへ移動します。ログインしていない場合はログイン画面に遷移します。</p>
+          <p>当社の長期在庫・型落ち品などを、セディアカスタマーWEB会員様限定でアウトレット価格にて販売します。数量限定、早い者勝ちです。</p>
+          <p class="note">※既に会員の方は「ログイン」ボタンからセディアカスタマーWEBへログインしてご利用ください。未登録の方は「申込へ進む（新規登録）」からお申し込みください。申込先URLは運用環境のURLに差し替えてご利用ください。</p>
           <div class="cta-row">
-            <!-- 更新時に href を運用URLに差し替えてください -->
-            <a id="applyBtn" class="btn primary ripple" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">申込へ進む（会員専用）</a>
+            <!-- 既に会員の方：ログインへ（運用時にURLを実運用のログインページに差し替えてください） -->
+            <a id="loginBtn" class="btn primary ripple" href="https://sedia.example.com/login" target="_blank" rel="noopener noreferrer" aria-label="セディアカスタマーWEBにログイン">会員の方はこちら（ログイン）</a>
+
+            <!-- 未登録の方：申込（新規会員登録 / アウトレット申込） -->
+            <a id="applyBtn" class="btn ghost" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer" aria-label="未登録の方はこちらから申込">未登録の方は申込へ進む</a>
+
             <a class="btn ghost" href="#how-it-works">申込の流れを見る</a>
           </div>
         </div>
@@ -155,7 +159,7 @@
       <h3 class="reveal-up">アウトレットの特長</h3>
       <ul class="features-list">
         <li class="card reveal-up delay-1">
-          <strong>会員限定：</strong>セディアカスタマーWEBにご登録いただいている法人/担当者様のみ利用可能です。
+          <strong>会員限定：</strong>セディアカスタマーWEBにご登録いただいている会員様のみ利用可能です。
         </li>
         <li class="card reveal-up delay-2">
           <strong>アウトレット価格：</strong>通常価格より大幅割引の商品を限定数でご提供。
@@ -164,14 +168,14 @@
           <strong>在庫一掃：</strong>長期在庫や型落ち、サンプルなどをアウトレット品として掲載。
         </li>
         <li class="card reveal-up delay-4">
-          <strong>簡単申込：</strong>申込フォームから購入申請 → 弊社で確認し、購入確定の連絡を差し上げます。
+          <strong>簡単申込：</strong>申込フォームからまずは、カスタマ―WEBの会員申し込みをお願いいたします。
         </li>
       </ul>
     </section>
 
     <section id="screens" class="screens container">
       <h3 class="reveal-up">画面イメージ</h3>
-      <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。実際のUIは変わる場合があります。</p>
+      <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。</p>
       <div class="screen-grid">
         <figure class="reveal-up delay-2">
           <!-- 商品一覧 (SVG) -->
@@ -230,7 +234,7 @@
       <ol class="flow-list">
         <li class="card reveal-up delay-1">
           <strong>1. 会員でログイン</strong>
-          <p>セディアカスタマーWEBにログインしてください（未登録の方はお問い合わせください）。</p>
+          <p>既に会員の方はセディアカスタマーWEBにログインしてください（未登録の方は次項の「申込」へ進んでください）。</p>
         </li>
         <li class="card reveal-up delay-2">
           <strong>2. アウトレット一覧から商品を選択</strong>
@@ -247,7 +251,9 @@
       </ol>
 
       <div style="text-align:center;margin-top:18px" class="reveal-up delay-5">
-        <a class="btn primary large ripple" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">今すぐ申込へ（会員専用）</a>
+        <!-- 下部CTAもログイン / 申込 を分けて表示 -->
+        <a id="loginBtnBottom" class="btn primary large ripple" href="https://sedia.example.com/login" target="_blank" rel="noopener noreferrer">会員の方：ログイン</a>
+        <a id="applyBtnBottom" class="btn ghost large" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer" style="margin-left:12px">未登録の方：申込へ</a>
       </div>
     </section>
 
@@ -255,7 +261,7 @@
       <h3 class="reveal-up">よくある質問（FAQ）</h3>
       <dl class="reveal-up delay-1">
         <dt>Q. 会員でないと申し込めませんか？</dt>
-        <dd>A. はい。本ページの申込はセディアカスタマーWEB会員様限定です。未登録の方は営業担当までお問い合わせください。</dd>
+        <dd>A. はい。本ページの申込はセディアカスタマーWEB会員様限定です。未登録の方は上部または下部の「申込へ進む（未登録の方）」ボタンからお申し込みください。営業担当へ直接お問い合わせでも対応可能です。</dd>
 
         <dt>Q. 商品の保証はどうなりますか？</dt>
         <dd>A. アウトレット品は通常の商品と異なる取り扱い（保証範囲・返品条件）となることがあります。商品ごとに記載の条件をご確認ください。</dd>
@@ -264,7 +270,7 @@
 
     <footer class="site-footer container">
       <p>© Sedia Corporation. All rights reserved.</p>
-      <p class="note">このページは静的ランディングページです。申込先URLは運用環境のURLに差し替えてご利用ください。</p>
+      <p class="note">このページは静的ランディングページです。申込先・ログイン先URLは運用環境のURLに差し替えてご利用ください。</p>
     </footer>
   </main>
 
@@ -310,12 +316,39 @@
         });
       });
 
-      // 申込ボタンクリックの簡易ログ（運用時に計測タグへ差し替えてください）
-      document.getElementById('applyBtn')?.addEventListener('click', function () {
-        try { console.log('アウトレット申込ボタンがクリックされました'); } catch(e){}
-      });
+      // ボタンクリックの簡易ログ（運用時に計測タグへ差し替えてください）
+      const applyBtn = document.getElementById('applyBtn');
+      const applyBtnBottom = document.getElementById('applyBtnBottom');
+      const loginBtn = document.getElementById('loginBtn');
+      const loginBtnBottom = document.getElementById('loginBtnBottom');
+
+      function logClick(label){
+        try { console.log(label + ' がクリックされました'); } catch(e){}
+      }
+
+      applyBtn?.addEventListener('click', function () { logClick('未登録の方：申込へ進む'); });
+      applyBtnBottom?.addEventListener('click', function () { logClick('未登録の方：申込へ進む（下部）'); });
+
+      loginBtn?.addEventListener('click', function () { logClick('会員：ログインへ進む'); });
+      loginBtnBottom?.addEventListener('click', function () { logClick('会員：ログインへ進む（下部）'); });
+
+      // 補助機能（任意）：
+      // URLクエリに member=1 を付与して来訪した場合はログインへ自動案内する例
+      // （不要ならこの処理ごと削除してください）
+      try {
+        const qs = new URLSearchParams(window.location.search);
+        if (qs.get('member') === '1') {
+          // 会員であると想定してログイン画面へリダイレクト（新しいタブで開く）
+          const loginUrl = (loginBtn && loginBtn.href) ? loginBtn.href : null;
+          if (loginUrl) {
+            window.open(loginUrl, '_blank', 'noopener');
+            // Optional: focus on logged-in flow notification
+            console.log('member=1 が検出されたためログインページを新しいタブで開きました。');
+          }
+        }
+      } catch (e) { /* noop */ }
+
     })();
   </script>
 </body>
 </html>
-
