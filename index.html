@@ -3,316 +3,388 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>セディア アウトレット - メンバー限定ランディングページ</title>
-  <meta name="description" content="セディアカスタマーWEB会員限定のアウトレット（在庫処分）紹介ランディングページ。水色背景・アニメーションで視覚的に訴求します。" />
+  <title>セディア アウトレット（俗っぽいバージョン）- 会員限定セール</title>
+  <meta name="description" content="会員限定アウトレット（俗っぽい派手版）。派手なセールバッジ、点滅表示、カウントダウン、バッジ多数で“アウトレット感”を演出します。" />
   <style>
+    /* ==========================
+       俗っぽいアウトレット用スタイル
+       すべてインラインで1ファイル完結
+       ========================== */
     :root{
       --max-w:1100px;
-      --accent:#0f9bff;
-      --accent-2:#5ce1ff;
-      --muted:#556;
-      --bg-start:#e8f7ff;
-      --bg-end:#f4fbff;
+      --bg1:#e6f9ff;
+      --bg2:#fefefe;
+      --neon1:#ff3d81;
+      --neon2:#ffb400;
+      --accent:#ff3d81;
+      --accent-2:#ff8a00;
+      --muted:#444;
       --card:#fff;
-      --radius:14px;
-      --shadow-1: rgba(16,115,203,0.08);
-      font-family:"Noto Sans JP","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      color-scheme:light;
+      --danger:#d32f2f;
+      font-family: "Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,var(--bg-start),var(--bg-end));color:#072a3f;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-    /* Background floating blobs */
-    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
-    .blob{position:absolute;border-radius:50%;filter:blur(28px);opacity:0.18;transform-origin:center;animation:blobMove 12s ease-in-out infinite}
-    .b1{width:360px;height:360px;background:linear-gradient(135deg,#9ee7ff,#5ec2ff);left:-80px;top:6%}
-    .b2{width:260px;height:260px;background:linear-gradient(135deg,#7fe1ff,#56b0ff);right:-60px;top:30%;animation-duration:16s;opacity:0.14}
-    .b3{width:180px;height:180px;background:linear-gradient(135deg,#c3f6ff,#9beaff);left:10%;bottom:-60px;animation-duration:20s;opacity:0.12}
-    @keyframes blobMove{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
-
-    .container{max-width:var(--max-w);margin:0 auto;padding:30px 20px;position:relative;z-index:2}
-    .site-header{background:linear-gradient(90deg,rgba(16,115,203,0.95),rgba(27,151,235,0.95));color:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 25px var(--shadow-1)}
-    .header-inner{display:flex;flex-direction:column;gap:4px}
-    .logo{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:0.3px}
-    .tag{margin:0;color:rgba(255,255,255,0.95);font-weight:600;font-size:0.95rem}
-
-    .hero{padding:44px 0 18px;position:relative;overflow:visible}
-    .hero-inner{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
-    .hero-text{flex:1;min-width:300px;max-width:640px}
-    .hero-image{flex:1;min-width:280px;text-align:right}
-    .hero-image .card{display:inline-block;border-radius:14px;padding:14px;background:linear-gradient(180deg,#fff,#fbfeff);box-shadow:0 12px 34px var(--shadow-1);border:1px solid rgba(0,0,0,0.04)}
-    h2{font-size:1.7rem;margin:0 0 12px;color:#073a5a}
-    p{margin:0 0 12px;color:#093547}
-    .note{font-size:0.92rem;color:var(--muted)}
-
-    .cta-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:1px solid transparent;font-weight:700;transition:transform .18s ease,box-shadow .18s ease;position:relative;overflow:hidden}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 28px var(--shadow-1)}
-    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(15,155,255,0.12)}
-    .btn.large{padding:14px 22px;font-size:1.02rem;border-radius:12px}
-
-    /* ripple effect - visual fallback for pointer events */
-    .ripple:after{content:"";position:absolute;border-radius:50%;transform:scale(0);opacity:0;pointer-events:none}
-    .ripple:active:after{animation:rippleAnim .6s linear;opacity:0.28}
-    @keyframes rippleAnim{to{transform:scale(8);opacity:0}}
-
-    .features{padding:26px 0}
-    .features-list{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:12px}
-    .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 22px rgba(9,60,92,0.03);transition:transform .28s cubic-bezier(.2,.9,.3,1),box-shadow .28s}
-    .card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 22px 40px rgba(14,98,155,0.08)}
-
-    .screens{padding:20px 0}
-    .screen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:12px}
-    .screen-frame{width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);background:#fff;padding:12px;box-shadow:0 12px 30px rgba(11,56,92,0.03)}
-
-    .flow{padding:20px 0}
-    .flow-list{margin:12px 0 0;padding-left:18px}
-    .flow-list li{margin-bottom:12px}
-
-    .faq dl{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04)}
-    .faq dt{font-weight:800;margin-top:12px}
-    .faq dd{margin:6px 0 0;color:var(--muted)}
-
-    .site-footer{padding:18px 0;background:transparent;border-top:1px solid rgba(0,0,0,0.04);margin-top:30px}
-    .site-footer p{margin:6px 0;color:var(--muted)}
-
-    /* Reveal animation */
-    .reveal-up{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
-    .reveal-right{opacity:0;transform:translateX(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
-    .reveal-up.is-visible, .reveal-right.is-visible{opacity:1;transform:none}
-    .delay-1{transition-delay:.06s}
-    .delay-2{transition-delay:.14s}
-    .delay-3{transition-delay:.22s}
-    .delay-4{transition-delay:.30s}
-    .delay-5{transition-delay:.38s}
-
-    /* small screens */
-    @media (max-width:1000px){
-      .hero-inner{align-items:flex-start}
-      .hero-image{text-align:left}
-      h2{font-size:1.4rem}
+    body{
+      margin:0;
+      background: repeating-linear-gradient(135deg, #e6f9ff 0 40px, #f0fbff 40px 80px);
+      color:#0b2530;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
-    @media (max-width:640px){
-      .container{padding:20px 16px}
-      .hero-image img{max-width:100%}
-      .hero-image{order:2}
-      .hero-text{order:1}
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:20px;position:relative}
+
+    /* Header */
+    header.site-header{
+      display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-radius:10px;
+      background:linear-gradient(90deg,#ffefef 0,#fff4e6 50%,#e8f8ff 100%);
+      box-shadow:0 6px 22px rgba(0,0,0,0.08);
+      margin-bottom:18px;
+      border:3px solid #ffd4d4;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      font-weight:900;color:#b31217;font-size:1.15rem;
+      text-shadow:0 2px 8px rgba(255,61,129,0.18);
+    }
+    .tagline{font-size:0.95rem;color:#333;font-weight:700}
+    /* flashy ribbon */
+    .ribbon{
+      position:relative;padding:8px 12px;background:linear-gradient(90deg,var(--neon1),var(--neon2));
+      color:#fff;font-weight:900;border-radius:8px;box-shadow:0 8px 30px rgba(255,61,129,0.12);
+      transform:skewX(-12deg);letter-spacing:0.6px;
+      animation:glow 1.4s ease-in-out infinite;
+    }
+    @keyframes glow{
+      0%{box-shadow:0 6px 18px rgba(255,61,129,0.12)}
+      50%{box-shadow:0 14px 36px rgba(255,138,0,0.18)}
+      100%{box-shadow:0 6px 18px rgba(255,61,129,0.12)}
+    }
+
+    /* TOP hero */
+    .hero{
+      display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:18px;
+      background:linear-gradient(180deg,#fffef2 0,#fff 60%);
+      padding:18px;border-radius:12px;border:2px dashed #ffd9d9;
+      box-shadow:0 16px 44px rgba(220,30,60,0.06);
+    }
+    .hero-left{flex:1;min-width:260px}
+    .hero-right{width:380px;min-width:220px;display:flex;justify-content:center}
+    .hero-title{font-size:1.7rem;font-weight:900;color:#b31a2a;margin:0 0 8px;letter-spacing:0.6px}
+    .hero-sub{font-size:1rem;margin:0 0 10px;color:#2b2b2b}
+    /* SALE badge */
+    .sale-badge{
+      display:inline-block;padding:8px 14px;border-radius:26px;background:linear-gradient(90deg,#ff3d81,#ff8a00);
+      color:#fff;font-weight:900;margin-bottom:10px;box-shadow:0 8px 30px rgba(255,61,129,0.12);
+      transform:translateZ(0);animation:pop 1s cubic-bezier(.17,.9,.32,1) infinite;
+    }
+    @keyframes pop{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.04)}
+      100%{transform:scale(1)}
+    }
+    .big-discount{font-size:2rem;font-weight:900;color:#ff3d81;margin:6px 0}
+    .blink{animation:blink 1s steps(2,start) infinite}
+    @keyframes blink{50%{opacity:.2}}
+
+    /* ticker */
+    .ticker{background:#fff;border-radius:8px;padding:8px 10px;display:flex;align-items:center;gap:12px;border:1px solid #ffd9d9;overflow:hidden}
+    .ticker .marquee{white-space:nowrap;display:inline-block;animation:marq 12s linear infinite}
+    @keyframes marq{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+
+    /* products grid - ガチャガチャ感を強調 */
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+    .product{
+      background:linear-gradient(180deg,#fff,#fff8f6);
+      border:2px solid #ffe6e6;padding:12px;border-radius:12px;position:relative;
+      box-shadow:0 10px 26px rgba(0,0,0,0.06);
+      overflow:hidden;
+      transition:transform .18s ease,box-shadow .18s;
+    }
+    .product:hover{transform:translateY(-8px);box-shadow:0 24px 54px rgba(0,0,0,0.12)}
+    .sticker{
+      position:absolute;left:12px;top:12px;background:#fff3f6;color:#d32f2f;padding:6px 8px;border-radius:6px;font-weight:800;font-size:0.85rem;border:1px solid #ffd6e0;
+      transform:rotate(-8deg);
+      box-shadow:0 8px 18px rgba(211,47,47,0.06);
+    }
+    .sold-badge{
+      position:absolute;right:12px;top:12px;background:linear-gradient(90deg,#ffd400,#ff5e3a);color:#000;padding:6px 8px;border-radius:8px;font-weight:900;font-size:0.9rem;
+      transform:skewX(10deg);
+      box-shadow:0 8px 18px rgba(255,138,0,0.06);
+      animation:flash 1.2s linear infinite;
+    }
+    @keyframes flash{0%{opacity:1}50%{opacity:.3}100%{opacity:1}}
+
+    .product-img{height:120px;background:linear-gradient(135deg,#fff,#fff6f3);border-radius:8px;margin-bottom:10px;display:flex;align-items:center;justify-content:center;border:1px solid #ffeedd}
+    .product-title{font-weight:900;color:#b3222f;margin:0 0 6px}
+    .product-desc{font-size:0.9rem;color:#4a4a4a;margin:0 0 10px}
+    .price-row{display:flex;align-items:center;gap:12px}
+    .price-old{text-decoration:line-through;color:#777;font-weight:700}
+    .price-new{font-weight:900;color:#ff3d81;font-size:1.25rem;animation:pricePop .9s ease-in-out infinite}
+    @keyframes pricePop{0%{transform:translateY(0)}50%{transform:translateY(-4px)}100%{transform:translateY(0)}}
+    .qty{font-size:0.85rem;color:#666;padding:6px 8px;border-radius:8px;background:#fff;border:1px solid #f0f0f0}
+
+    /* CTA */
+    .cta-wrap{text-align:center;margin:18px 0}
+    .cta-btn{
+      display:inline-block;padding:14px 26px;border-radius:999px;color:#fff;font-weight:900;text-decoration:none;
+      background:linear-gradient(90deg,#ff3d81,#ff8a00);box-shadow:0 18px 48px rgba(255,61,129,0.12);
+      transform:translateZ(0);position:relative;overflow:hidden;
+      animation:pulse 1.8s infinite;
+      border:4px solid rgba(255,255,255,0.12);
+    }
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
+    .cta-sub{font-size:0.9rem;color:#3b3b3b;margin-top:8px}
+
+    /* countdown */
+    .countdown{display:inline-flex;gap:8px;background:#fff;padding:10px;border-radius:10px;border:2px solid #ffe5e5;font-weight:900}
+    .count-item{min-width:60px;text-align:center}
+    .count-number{font-size:1.25rem;color:#b31a2a}
+    .count-label{font-size:0.72rem;color:#666}
+
+    /* flashy footer */
+    footer.site-footer{margin-top:24px;padding:12px;border-radius:8px;background:linear-gradient(180deg,#fff,#fff6f8);border:1px solid #ffe8e8;text-align:center;color:#555;font-weight:700}
+
+    /* confetti pieces (generated via JS) */
+    .confetti{position:fixed;pointer-events:none;z-index:9999;will-change:transform,opacity}
+
+    /* responsive tweaks */
+    @media (max-width:780px){
+      .hero-right{order:2;width:100%}
+      .hero-left{order:1}
+      .product-img{height:100px}
+      .hero{flex-direction:column;align-items:flex-start}
     }
   </style>
 </head>
 <body>
-  <!-- Animated background blobs -->
-  <div class="page-bg" aria-hidden="true">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-  </div>
+  <div class="wrap">
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <div>
+          <div class="logo">SEDIA OUTLET</div>
+          <div class="tagline">会員様限定の在庫一掃セール！</div>
+        </div>
+      </div>
+      <div class="ribbon" aria-hidden="true">LIMITED TIME</div>
+    </header>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <h1 class="logo">Sedia Customer WEB - アウトレット</h1>
-      <p class="tag">会員限定｜長期在庫をアウトレット価格でご提供</p>
-    </div>
-  </header>
+    <section class="hero" role="region" aria-label="ヒーロー">
+      <div class="hero-left">
+        <div class="sale-badge">アウトレット祭り</div>
+        <h1 class="hero-title">早い者勝ち！会員限定アウトレット</h1>
+        <p class="hero-sub">型落ち・長期在庫をビックリ価格で放出中。数量限定・返品不可の商品もあります。まずは申込フォームへ！</p>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text reveal-up">
-          <h2>お得に、必要な商品を。会員様限定のアウトレットセール</h2>
-          <p>当社の長期在庫・型落ち品・サンプル品などを、セディアカスタマーWEB会員様限定でアウトレット価格にて販売します。数量限定、早い者勝ちです。</p>
-          <p class="note">※「申込へ進む」ボタンは、セディアカスタマーWEB内の申込ページへ移動します。ログインしていない場合はログイン画面に遷移します。</p>
-          <div class="cta-row">
-            <!-- 更新時に href を運用URLに差し替えてください -->
-            <a id="applyBtn" class="btn primary ripple" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">申込へ進む（会員専用）</a>
-            <a class="btn ghost" href="#how-it-works">申込の流れを見る</a>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div class="ticker" style="min-width:220px">
+            <div style="font-weight:900;color:#d32f2f;margin-right:8px">速報</div>
+            <div class="marquee">本日追加：高圧ホース（残3）　/　人気商品 B品（1点限り）　/　次回入荷未定</div>
+          </div>
+
+          <div class="countdown" aria-live="polite" id="countdown">
+            <div class="count-item"><div class="count-number" id="cd-days">00</div><div class="count-label">日</div></div>
+            <div class="count-item"><div class="count-number" id="cd-hours">00</div><div class="count-label">時</div></div>
+            <div class="count-item"><div class="count-number" id="cd-mins">00</div><div class="count-label">分</div></div>
+            <div class="count-item"><div class="count-number" id="cd-secs">00</div><div class="count-label">秒</div></div>
           </div>
         </div>
 
-        <div class="hero-image reveal-right">
-          <div class="card" aria-hidden="true">
-            <!-- inline SVG: アウトレット一覧サンプル -->
-            <svg class="screen-frame" width="420" height="260" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="アウトレット一覧サンプル">
-              <rect width="1200" height="760" rx="12" fill="#ffffff" stroke="#e6eef9"/>
-              <rect x="28" y="28" width="1144" height="64" rx="8" fill="#f2f7ff"/>
-              <text x="56" y="70" font-size="20" fill="#1e88e5" font-family="Noto Sans JP, Arial">アウトレット一覧（サンプル画面）</text>
-              <g transform="translate(40,120)" font-family="Noto Sans JP, Arial">
-                <rect width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-                <rect x="350" width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-                <rect x="700" width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-                <text x="16" y="30" font-size="16" fill="#333">商品名 001</text>
-                <text x="16" y="60" font-size="14" fill="#666">状態：良好</text>
-                <text x="16" y="100" font-size="18" fill="#d32f2f">¥12,000 → ¥6,000</text>
-              </g>
+        <div style="margin-top:12px">
+          <a id="applyBtn" class="cta-btn" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">今すぐ申込（会員限定）</a>
+          <div class="cta-sub">ログインしていないと申込できません。申込後、弊社で確認して確定します。</div>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <!-- flashy sample product block -->
+        <div style="width:320px">
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+            <div style="background:#fff;padding:6px 10px;border-radius:8px;border:2px solid #ffd6e0;font-weight:900;color:#b31a2a">最大90%OFF</div>
+            <div style="background:linear-gradient(90deg,#ffefa8,#ffd6a6);padding:6px 10px;border-radius:8px;font-weight:900;color:#6b3b00">早割あり</div>
+          </div>
+          <div style="background:linear-gradient(90deg,#fff5f7,#fff);padding:10px;border-radius:12px;border:2px solid #ffe9f0">
+            <div style="font-weight:900;color:#b31a2a;margin-bottom:6px">商品例：高圧ホース</div>
+            <div style="font-size:0.9rem;color:#555;margin-bottom:8px">状態：中古（点検済）</div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="font-size:1.25rem;color:#777;text-decoration:line-through">¥12,000</div>
+              <div style="font-size:1.7rem;font-weight:900;color:#ff3d81">¥3,600</div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <div style="background:#fff;border-radius:8px;padding:6px 8px;border:1px solid #f0f0f0;font-weight:900">残り3点</div>
+              <div style="background:linear-gradient(90deg,#ff3d81,#ff8a00);padding:6px 10px;border-radius:8px;color:#fff;font-weight:900">申込急げ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- products -->
+    <section aria-label="商品一覧">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin:10px 0">
+        <h2 style="margin:0;font-size:1.05rem;font-weight:900;color:#b31a2a">アウトレット出品一覧</h2>
+        <div style="font-size:0.9rem;color:#666">会員限定 / 数量限定 / 申込後確認</div>
+      </div>
+
+      <div class="products" id="products">
+        <!-- product items (サンプル) -->
+        <article class="product" data-id="p001">
+          <div class="sticker">B品</div>
+          <div class="sold-badge">特価</div>
+          <div class="product-img">
+            <!-- simple SVG icon -->
+            <svg width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="6" y="8" rx="8" ry="8" width="108" height="64" fill="#fff1f3" stroke="#ffdce6"/>
+              <text x="60" y="46" font-size="14" text-anchor="middle" fill="#b31a2a" font-weight="700">高圧ホース</text>
             </svg>
           </div>
-        </div>
-      </div>
-      <div style="height:28px;"></div>
-    </section>
+          <h3 class="product-title">高圧ホース（型番A1）</h3>
+          <p class="product-desc">動作確認済み。長期在庫のためキズあり。</p>
+          <div class="price-row">
+            <div class="price-old">¥12,000</div>
+            <div class="price-new">¥3,600</div>
+            <div class="qty">残3</div>
+          </div>
+        </article>
 
-    <section id="features" class="features container">
-      <h3 class="reveal-up">アウトレットの特長</h3>
-      <ul class="features-list">
-        <li class="card reveal-up delay-1">
-          <strong>会員限定：</strong>セディアカスタマーWEBにご登録いただいている法人/担当者様のみ利用可能です。
-        </li>
-        <li class="card reveal-up delay-2">
-          <strong>アウトレット価格：</strong>通常価格より大幅割引の商品を限定数でご提供。
-        </li>
-        <li class="card reveal-up delay-3">
-          <strong>在庫一掃：</strong>長期在庫や型落ち、サンプルなどをアウトレット品として掲載。
-        </li>
-        <li class="card reveal-up delay-4">
-          <strong>簡単申込：</strong>申込フォームから購入申請 → 弊社で確認し、購入確定の連絡を差し上げます。
-        </li>
-      </ul>
-    </section>
+        <article class="product" data-id="p002">
+          <div class="sticker">サンプル</div>
+          <div class="sold-badge">限定1点</div>
+          <div class="product-img">
+            <svg width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="6" y="8" rx="8" ry="8" width="108" height="64" fill="#fff8e6" stroke="#ffe9c4"/>
+              <text x="60" y="46" font-size="14" text-anchor="middle" fill="#b36b00" font-weight="700">測定器B</text>
+            </svg>
+          </div>
+          <h3 class="product-title">測定器B（サンプル）</h3>
+          <p class="product-desc">サンプル品。動作に問題ありません。</p>
+          <div class="price-row">
+            <div class="price-old">¥48,000</div>
+            <div class="price-new">¥9,800</div>
+            <div class="qty">残1</div>
+          </div>
+        </article>
 
-    <section id="screens" class="screens container">
-      <h3 class="reveal-up">画面イメージ</h3>
-      <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。実際のUIは変わる場合があります。</p>
-      <div class="screen-grid">
-        <figure class="reveal-up delay-2">
-          <!-- 商品一覧 (SVG) -->
-          <svg class="screen-frame" width="600" height="360" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="アウトレット一覧">
-            <rect width="1200" height="760" rx="12" fill="#ffffff" stroke="#e6eef9"/>
-            <rect x="28" y="28" width="1144" height="64" rx="8" fill="#f2f7ff"/>
-            <text x="56" y="70" font-size="20" fill="#1e88e5" font-family="Noto Sans JP, Arial">アウトレット一覧（サンプル）</text>
-            <g transform="translate(40,120)" font-family="Noto Sans JP, Arial">
-              <rect width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect x="350" width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect x="700" width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-              <text x="16" y="30" font-size="16" fill="#333">商品名 001</text>
-              <text x="16" y="60" font-size="14" fill="#666">状態：良好</text>
-              <text x="16" y="100" font-size="18" fill="#d32f2f">¥12,000 → ¥6,000</text>
-            </g>
-          </svg>
-          <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">アウトレット一覧（絞り込み・価格表示）</figcaption>
-        </figure>
+        <article class="product" data-id="p003">
+          <div class="sticker">型落ち</div>
+          <div class="sold-badge">激安</div>
+          <div class="product-img">
+            <svg width="120" height="80" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="6" y="8" rx="8" ry="8" width="108" height="64" fill="#f0fff6" stroke="#d9ffe9"/>
+              <text x="60" y="46" font-size="14" text-anchor="middle" fill="#007a3a" font-weight="700">バルブC</text>
+            </svg>
+          </div>
+          <h3 class="product-title">バルブC（型番C-200）</h3>
+          <p class="product-desc">型落ちモデル。性能は問題なし。</p>
+          <div class="price-row">
+            <div class="price-old">¥22,000</div>
+            <div class="price-new">¥4,400</div>
+            <div class="qty">残5</div>
+          </div>
+        </article>
 
-        <figure class="reveal-up delay-3">
-          <!-- 商品詳細 (SVG) -->
-          <svg class="screen-frame" width="600" height="360" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="商品詳細サンプル">
-            <rect width="1200" height="760" rx="12" fill="#ffffff" stroke="#e6eef9"/>
-            <rect x="40" y="40" width="520" height="420" rx="8" fill="#f9fbff" stroke="#e6eef9"/>
-            <rect x="600" y="40" width="540" height="420" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-            <text x="60" y="76" font-size="20" fill="#111">商品名 001 - 詳細</text>
-            <text x="620" y="76" font-size="16" fill="#666">価格：¥6,000（アウトレット）</text>
-            <text x="620" y="120" font-size="14" fill="#333">数量：10</text>
-            <rect x="620" y="200" width="180" height="40" rx="6" fill="#1e88e5"/>
-            <text x="650" y="227" font-size="14" fill="#fff">申込に進む</text>
-          </svg>
-          <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">商品詳細（数量・状態・申込ボタン）</figcaption>
-        </figure>
-
-        <figure class="reveal-up delay-4">
-          <!-- 申込フォーム (SVG) -->
-          <svg class="screen-frame" width="600" height="360" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="申込フォームサンプル">
-            <rect width="1200" height="760" rx="12" fill="#ffffff" stroke="#e6eef9"/>
-            <text x="60" y="70" font-size="20" fill="#111">申込フォーム（サンプル）</text>
-            <g transform="translate(60,110)" font-family="Noto Sans JP, Arial">
-              <rect width="1080" height="56" rx="6" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect y="80" width="1080" height="56" rx="6" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect y="160" width="1080" height="120" rx="6" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect y="300" x="0" width="260" height="48" rx="6" fill="#1e88e5"/>
-              <text x="16" y="34" font-size="14" fill="#666">納入先 / 連絡先 / 備考</text>
-              <text x="16" y="332" font-size="14" fill="#fff">申込を送信</text>
-            </g>
-          </svg>
-          <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">申込フォーム（確認の上、確定連絡）</figcaption>
-        </figure>
+        <!-- さらに商品はJSで増やせます -->
       </div>
     </section>
 
-    <section id="how-it-works" class="flow container">
-      <h3 class="reveal-up">申込の流れ</h3>
-      <ol class="flow-list">
-        <li class="card reveal-up delay-1">
-          <strong>1. 会員でログイン</strong>
-          <p>セディアカスタマーWEBにログインしてください（未登録の方はお問い合わせください）。</p>
-        </li>
-        <li class="card reveal-up delay-2">
-          <strong>2. アウトレット一覧から商品を選択</strong>
-          <p>商品状態・数量・価格を確認し、購入申込したい商品を選びます。</p>
-        </li>
-        <li class="card reveal-up delay-3">
-          <strong>3. 申込フォームに必要事項を入力</strong>
-          <p>購入希望数量・納入先・連絡先などを入力して送信します。</p>
-        </li>
-        <li class="card reveal-up delay-4">
-          <strong>4. 弊社で確認 → 購入確定</strong>
-          <p>在庫・価格を確認し、購入確定のご連絡（メール/システム内メッセージ）を行います。確定後、出荷/請求の手続きを開始します。</p>
-        </li>
-      </ol>
+    <div class="cta-wrap">
+      <a id="applyBottom" class="cta-btn" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">申込フォームへ（会員専用）</a>
+    </div>
 
-      <div style="text-align:center;margin-top:18px" class="reveal-up delay-5">
-        <a class="btn primary large ripple" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">今すぐ申込へ（会員専用）</a>
-      </div>
-    </section>
-
-    <section id="faq" class="faq container">
-      <h3 class="reveal-up">よくある質問（FAQ）</h3>
-      <dl class="reveal-up delay-1">
-        <dt>Q. 会員でないと申し込めませんか？</dt>
-        <dd>A. はい。本ページの申込はセディアカスタマーWEB会員様限定です。未登録の方は営業担当までお問い合わせください。</dd>
-
-        <dt>Q. 商品の保証はどうなりますか？</dt>
-        <dd>A. アウトレット品は通常の商品と異なる取り扱い（保証範囲・返品条件）となることがあります。商品ごとに記載の条件をご確認ください。</dd>
-      </dl>
-    </section>
-
-    <footer class="site-footer container">
-      <p>© Sedia Corporation. All rights reserved.</p>
-      <p class="note">このページは静的ランディングページです。申込先URLは運用環境のURLに差し替えてご利用ください。</p>
+    <footer class="site-footer">
+      注：アウトレット品は原則返品不可、保証範囲は商品によります。会員限定のためログインが必要です。
     </footer>
-  </main>
+  </div>
 
   <script>
-    // スクロールで要素をフェードイン（IntersectionObserver）
+    // ==============
+    // 俗っぽいJS: カウントダウン / 申込クリックで紙吹雪 / トラッキングログ
+    // ==============
+
     (function () {
-      const revealItems = document.querySelectorAll('.reveal-up, .reveal-right');
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              io.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12 });
-        revealItems.forEach(el => io.observe(el));
-      } else {
-        revealItems.forEach(el => el.classList.add('is-visible'));
+      // -- カウントダウン: デフォルトで公開から72時間後を期限に設定（必要に応じて変更）
+      const deadline = new Date(Date.now() + 72*60*60*1000); // 72時間後
+      const pad = (n)=> String(n).padStart(2,'0');
+      function updateCountdown(){
+        const now = new Date();
+        let diff = Math.max(0, deadline - now);
+        const days = Math.floor(diff / (24*60*60*1000)); diff -= days*24*60*60*1000;
+        const hours = Math.floor(diff / (60*60*1000)); diff -= hours*60*60*1000;
+        const mins = Math.floor(diff / (60*1000)); diff -= mins*60*1000;
+        const secs = Math.floor(diff / 1000);
+        document.getElementById('cd-days').textContent = pad(days);
+        document.getElementById('cd-hours').textContent = pad(hours);
+        document.getElementById('cd-mins').textContent = pad(mins);
+        document.getElementById('cd-secs').textContent = pad(secs);
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // -- confetti (簡易)：申込ボタン押下で発射
+      function launchConfetti(x,y){
+        for(let i=0;i<24;i++){
+          const el = document.createElement('div');
+          el.className = 'confetti';
+          const size = Math.random()*10+6;
+          el.style.width = size+'px';
+          el.style.height = (size*0.6)+'px';
+          el.style.left = (x + (Math.random()*120 - 60)) + 'px';
+          el.style.top = (y + (Math.random()*40 - 20)) + 'px';
+          el.style.background = ['#ff3d81','#ff8a00','#ffd400','#7be2ff','#7affc2'][Math.floor(Math.random()*5)];
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0) rotate('+Math.random()*360+'deg)';
+          el.style.borderRadius = '2px';
+          el.style.transition = 'transform 1100ms cubic-bezier(.2,.8,.2,1), opacity 900ms ease';
+          document.body.appendChild(el);
+          (function(e){
+            requestAnimationFrame(()=>{
+              e.style.transform = 'translateY(420px) translateX(' + (Math.random()*400-200) + 'px) rotate(' + (Math.random()*720-360) + 'deg)';
+              e.style.opacity = '0';
+            });
+            setTimeout(()=> e.remove(), 1200);
+          })(el);
+        }
       }
 
-      // Ripple effect (pointer-based)
-      document.querySelectorAll('.ripple').forEach(btn => {
-        btn.addEventListener('pointerdown', function (e) {
-          const rect = btn.getBoundingClientRect();
-          const circle = document.createElement('span');
-          const d = Math.max(rect.width, rect.height) * 2;
-          circle.style.width = circle.style.height = d + 'px';
-          circle.style.left = (e.clientX - rect.left - d/2) + 'px';
-          circle.style.top = (e.clientY - rect.top - d/2) + 'px';
-          circle.style.position = 'absolute';
-          circle.style.borderRadius = '50%';
-          circle.style.background = 'rgba(255,255,255,0.22)';
-          circle.style.transform = 'scale(0)';
-          circle.style.pointerEvents = 'none';
-          circle.style.transition = 'transform .6s, opacity .6s';
-          btn.appendChild(circle);
-          requestAnimationFrame(() => circle.style.transform = 'scale(1)');
-          setTimeout(() => {
-            circle.style.opacity = '0';
-            setTimeout(() => circle.remove(), 600);
-          }, 300);
-        });
+      // -- クリックハンドラ：ボタンクリックで紙吹雪 /ログ出力/リンク（既にリンクあり）
+      function onApplyClick(e){
+        // get click position
+        const rect = e.target.getBoundingClientRect();
+        const x = rect.left + rect.width/2;
+        const y = rect.top + rect.height/2;
+        launchConfetti(x,y);
+        // analytics placeholder
+        try { console.info('OUTLET_APPLY_CLICK', {id:'apply', time: new Date().toISOString()}); } catch(err){}
+        // allow default navigation to proceed (link target=_blank)
+      }
+      document.getElementById('applyBtn').addEventListener('pointerdown', onApplyClick);
+      document.getElementById('applyBottom').addEventListener('pointerdown', onApplyClick);
+
+      // -- 製品クリックで簡易モーダル風（俗っぽさ演出）
+      document.getElementById('products').addEventListener('click', function(e){
+        const product = e.target.closest('.product');
+        if(!product) return;
+        const id = product.dataset.id || 'unknown';
+        // small popup using alert (シンプル＆俗っぽい)
+        alert('商品 ' + id + ' の申込は「申込フォーム」から行ってください。\n※会員限定／数量限定です。');
       });
 
-      // 申込ボタンクリックの簡易ログ（運用時に計測タグへ差し替えてください）
-      document.getElementById('applyBtn')?.addEventListener('click', function () {
-        try { console.log('アウトレット申込ボタンがクリックされました'); } catch(e){}
+      // -- スクロールでゆるく「点滅演出」: productのprice-newを交互にハイライト
+      setInterval(()=>{
+        document.querySelectorAll('.price-new').forEach((el,idx)=>{
+          if(Math.random() > 0.6) el.style.textShadow = '0 6px 18px rgba(255,61,129,0.12)';
+          else el.style.textShadow = 'none';
+        });
+      },900);
+
+      // -- アクセシビリティ補助: キーボードでEnter押下のときもconfetti
+      document.addEventListener('keydown', function(ev){
+        if(ev.key === 'Enter'){
+          const active = document.activeElement;
+          if(active && (active.id==='applyBtn' || active.id==='applyBottom')){
+            const rect = active.getBoundingClientRect();
+            launchConfetti(rect.left + rect.width/2, rect.top + rect.height/2);
+          }
+        }
       });
     })();
   </script>
