@@ -66,20 +66,51 @@
     .screen-frame{width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);background:#fff;padding:12px;box-shadow:0 12px 30px rgba(11,56,92,0.03)}
 
     /* 画像として挿入する場合のスタイル */
-    .screen-image{display:block;max-width:100%;width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 12px 30px rgba(11,56,92,0.03)}
+    .screen-image{display:block;max-width:100%;width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 12px 30px rgba(11,56,92,0.03);cursor:zoom-in}
     .screen-image.small{max-width:420px}
-    .flow-thumb{height:auto;max-height:48px;border-radius:8px;display:block;border:1px solid rgba(0,0,0,0.04)}
+    .flow-thumb{height:auto;max-height:48px;border-radius:8px;display:block;border:1px solid rgba(0,0,0,0.04);cursor:zoom-in}
 
-    .flow{padding:20px 0}
-    .flow-list{margin:12px 0 0;padding-left:18px}
-    .flow-list li{margin-bottom:12px}
+    /* Lightbox / Modal */
+    .lb-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(3,10,18,0.7);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:20px;
+      animation:fadeIn .18s ease;
+    }
+    .lb-overlay.open{display:flex}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .lb-content{max-width:calc(100vw - 48px);max-height:calc(100vh - 48px);position:relative;display:flex;align-items:center;justify-content:center}
+    .lb-img{
+      max-width:100%;
+      max-height:100%;
+      border-radius:8px;
+      box-shadow:0 18px 40px rgba(0,0,0,0.45);
+      transform-origin:center;
+      animation:pop .18s cubic-bezier(.2,.9,.3,1);
+    }
+    @keyframes pop{from{transform:scale(.98);opacity:0.9}to{transform:scale(1);opacity:1}}
 
-    .faq dl{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04)}
-    .faq dt{font-weight:800;margin-top:12px}
-    .faq dd{margin:6px 0 0;color:var(--muted)}
-
-    .site-footer{padding:18px 0;background:transparent;border-top:1px solid rgba(0,0,0,0.04);margin-top:30px}
-    .site-footer p{margin:6px 0;color:var(--muted)}
+    .lb-close{
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.12);
+      color:#fff;
+      width:40px;height:40px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;font-size:18px;
+      backdrop-filter: blur(4px);
+    }
+    .lb-caption{
+      margin-top:12px;color:#fff;font-size:0.95rem;text-align:center;
+      max-width:90vw;word-break:break-word;
+    }
 
     /* Reveal animation */
     .reveal-up{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
@@ -106,6 +137,15 @@
   </style>
 </head>
 <body>
+  <!-- Lightbox overlay -->
+  <div id="lightbox" class="lb-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lb-content" id="lbContent">
+      <button id="lbClose" class="lb-close" aria-label="閉じる">&times;</button>
+      <img id="lbImage" class="lb-img" src="" alt="" />
+    </div>
+    <div id="lbCaption" class="lb-caption" aria-hidden="true"></div>
+  </div>
+
   <!-- Animated background blobs -->
   <div class="page-bg" aria-hidden="true">
     <div class="blob b1"></div>
@@ -115,7 +155,7 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <h1 class="logo">Sedia カスタマー WEB - アウトレット</h1>
+      <h1 class="logo">SEDIA カスタマー WEB - アウトレット</h1>
       <p class="tag">会員限定｜訳アリ在庫をアウトレット価格でご提供</p>
     </div>
   </header>
@@ -132,7 +172,7 @@
             <a id="loginBtn" class="btn primary ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener noreferrer" aria-label="セディアカスタマーWEBにログイン">会員の方はこちら（ログイン）</a>
 
             <!-- 未登録の方：申込（新規会員登録 / アウトレット申込） -->
-             <a id="loginBtn" class="btn primary ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer" aria-label="未登録の方はこちらから申込">申込へ進む（新規登録）</a>
+             <a id="applyBtn" class="btn primary ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer" aria-label="未登録の方はこちらから申込">申込へ進む（新規登録）</a>
 
             <!-- 「申込の流れを見る」ボタンを画像に変更 -->
             <a class="btn ghost" href="#how-it-works">申込の流れを見る</a>
@@ -141,8 +181,8 @@
 
         <div class="hero-image reveal-right">
           <div class="card" aria-hidden="true">
-            <!-- ヒーロー右のサンプル表示を画像に変更 -->
-            <img src="outletPC1.jpg" alt="outletPC1.png" class="screen-image small" width="840" height="520" />
+            <!-- ヒーロー右のサンプル表示を画像に変更 (data-full に高解像度画像を置けます) -->
+            <img src="outletPC1.jpg" data-full="outletPC1-large.jpg" alt="アウトレット一覧サンプル" class="screen-image small" width="840" height="520" />
           </div>
         </div>
       </div>
@@ -169,23 +209,23 @@
 
     <section id="screens" class="screens container">
       <h3 class="reveal-up">画面イメージ</h3>
-      <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。</p>
+      <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。クリックすると拡大表示します。</p>
       <div class="screen-grid">
         <figure class="reveal-up delay-2">
           <!-- 商品一覧：SVG を画像に置換 -->
-          <img src="outletPC1.jpg" alt="outletPC1.png" class="screen-image" width="600" height="360" />
+          <img src="outletPC1.jpg" data-full="outletPC1-large.jpg" alt="アウトレット一覧（サンプル）" class="screen-image" width="600" height="360" />
           <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">アウトレット一覧（絞り込み・価格表示）</figcaption>
         </figure>
 
         <figure class="reveal-up delay-3">
           <!-- 商品詳細：SVG を画像に置換 -->
-          <img src="outletPC2.jpg" alt="outletPC2.png" class="screen-image" width="600" height="360" />
+          <img src="outletPC2.jpg" data-full="outletPC2-large.jpg" alt="商品詳細（サンプル）" class="screen-image" width="600" height="360" />
           <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">商品詳細（数量・状態・申込ボタン）</figcaption>
         </figure>
 
         <figure class="reveal-up delay-4">
           <!-- 申込フォーム：SVG を画像に置換 -->
-          <img src="outletPC3.JPG" alt="outletPC2.JPG" class="screen-image" width="600" height="360" />
+          <img src="outletPC3.JPG" data-full="outletPC3-large.JPG" alt="申込フォーム（サンプル）" class="screen-image" width="600" height="360" />
           <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">申込フォーム（確認の上、確定連絡）</figcaption>
         </figure>
       </div>
@@ -215,7 +255,7 @@
 
       <div style="text-align:center;margin-top:18px" class="reveal-up delay-5">
         <a id="loginBtnBottom" class="btn primary large ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener noreferrer">会員の方：ログイン</a>
-         <a id="loginBtnBottom" class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer">申込へ進む（未登録の方）</a>
+         <a id="applyBtnBottom" class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer">申込へ進む（未登録の方）</a>
       </div>
     </section>
 
@@ -236,8 +276,8 @@
   </main>
 
   <script>
-    // スクロールで要素をフェードイン（IntersectionObserver）
     (function () {
+      // Reveal (IntersectionObserver)
       const revealItems = document.querySelectorAll('.reveal-up, .reveal-right');
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver((entries) => {
@@ -253,7 +293,7 @@
         revealItems.forEach(el => el.classList.add('is-visible'));
       }
 
-      // Ripple effect (pointer-based)
+      // Ripple
       document.querySelectorAll('.ripple').forEach(btn => {
         btn.addEventListener('pointerdown', function (e) {
           const rect = btn.getBoundingClientRect();
@@ -277,7 +317,96 @@
         });
       });
 
-      // ボタンクリックの簡易ログ（運用時に計測タグへ差し替えてください）
+      // Lightbox implementation
+      const lightbox = document.getElementById('lightbox');
+      const lbImage = document.getElementById('lbImage');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose = document.getElementById('lbClose');
+
+      // Collect clickable images (gallery)
+      const galleryImages = Array.from(document.querySelectorAll('.screen-image, .flow-thumb'));
+      let currentIndex = -1;
+
+      function openLightbox(index) {
+        const img = galleryImages[index];
+        if (!img) return;
+        const full = img.dataset.full || img.src;
+        lbImage.src = full;
+        lbImage.alt = img.alt || '';
+        lbCaption.textContent = img.getAttribute('data-caption') || img.alt || '';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        currentIndex = index;
+        // focus close button for accessibility
+        lbClose.focus();
+        // prevent background scrolling
+        document.documentElement.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lbImage.src = '';
+        currentIndex = -1;
+        document.documentElement.style.overflow = '';
+      }
+
+      // Click handler on each gallery image
+      galleryImages.forEach((img, i) => {
+        img.addEventListener('click', (e) => {
+          e.preventDefault();
+          openLightbox(i);
+        });
+        // keyboard accessibility: Enter or Space opens
+        img.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLightbox(i);
+          }
+        });
+        // make focusable if not naturally
+        if (!img.hasAttribute('tabindex')) img.setAttribute('tabindex', '0');
+      });
+
+      // Close when clicking overlay (but not the image)
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lbClose) {
+          closeLightbox();
+        }
+      });
+
+      // Close via close button
+      lbClose.addEventListener('click', closeLightbox);
+
+      // Keyboard: ESC to close, ArrowLeft/ArrowRight to navigate
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('open')) {
+          if (e.key === 'Escape') {
+            closeLightbox();
+          } else if (e.key === 'ArrowLeft') {
+            // prev
+            e.preventDefault();
+            const prev = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            openLightbox(prev);
+          } else if (e.key === 'ArrowRight') {
+            // next
+            e.preventDefault();
+            const next = (currentIndex + 1) % galleryImages.length;
+            openLightbox(next);
+          }
+        }
+      });
+
+      // If image fails to load, show alt text in caption
+      lbImage.addEventListener('error', function () {
+        lbCaption.textContent = '画像を読み込めませんでした';
+        lbImage.style.display = 'none';
+      });
+      lbImage.addEventListener('load', function () {
+        lbImage.style.display = '';
+      });
+
+      // Button click logging (kept from original)
       const applyBtn = document.getElementById('applyBtn');
       const applyBtnBottom = document.getElementById('applyBtnBottom');
       const loginBtn = document.getElementById('loginBtn');
@@ -289,7 +418,6 @@
 
       applyBtn?.addEventListener('click', function () { logClick('未登録の方：申込へ進む'); });
       applyBtnBottom?.addEventListener('click', function () { logClick('未登録の方：申込へ進む（下部）'); });
-
       loginBtn?.addEventListener('click', function () { logClick('会員：ログインへ進む'); });
       loginBtnBottom?.addEventListener('click', function () { logClick('会員：ログインへ進む（下部）'); });
 
@@ -297,9 +425,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
