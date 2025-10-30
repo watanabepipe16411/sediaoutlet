@@ -31,7 +31,7 @@
     @keyframes blobMove{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
 
     .container{max-width:var(--max-w);margin:0 auto;padding:30px 20px;position:relative;z-index:2}
-    .site-header{background:linear-gradient(90deg,rgba(16,115,203,0.95),rgba(27,151,235,0.95));color:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 25px var(--shadow-1)}
+    .site-header{background:linear-gradient(90deg,rgba(16,115,203,0.95),rgba(27,151,235,0.95));Color:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 25px var(--shadow-1)}
     .header-inner{display:flex;flex-direction:column;gap:4px}
     .logo{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:0.3px}
     .tag{margin:0;color:rgba(255,255,255,0.95);font-weight:600;font-size:0.95rem}
@@ -64,6 +64,11 @@
     .screens{padding:20px 0}
     .screen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:12px}
     .screen-frame{width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);background:#fff;padding:12px;box-shadow:0 12px 30px rgba(11,56,92,0.03)}
+
+    /* 画像として挿入する場合のスタイル */
+    .screen-image{display:block;max-width:100%;width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 12px 30px rgba(11,56,92,0.03)}
+    .screen-image.small{max-width:420px}
+    .flow-thumb{height:auto;max-height:48px;border-radius:8px;display:block;border:1px solid rgba(0,0,0,0.04)}
 
     .flow{padding:20px 0}
     .flow-list{margin:12px 0 0;padding-left:18px}
@@ -127,29 +132,19 @@
             <a id="loginBtn" class="btn primary ripple" href="https://sedia.example.com/login" target="_blank" rel="noopener noreferrer" aria-label="セディアカスタマーWEBにログイン">会員の方はこちら（ログイン）</a>
 
             <!-- 未登録の方：申込（新規会員登録 / アウトレット申込） -->
-            <a id="loginBtn" class="btn primary ripple" href="https://sedia.example.com/login" target="_blank" rel="noopener noreferrer" aria-label="未登録の方はこちらから申込">未登録の方は申込へ進む</a>
-        
+            <a id="applyBtn" class="btn ghost" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer" aria-label="未登録の方はこちらから申込">未登録の方は申込へ進む</a>
 
-            <a class="btn ghost" href="#how-it-works">申込の流れを見る</a>
+            <!-- 「申込の流れを見る」ボタンを画像に変更 -->
+            <a href="#how-it-works" class="flow-link" aria-label="申込の流れを見る">
+              <img src="/assets/flow-thumb.png" alt="申込の流れを見る" class="flow-thumb" />
+            </a>
           </div>
         </div>
 
         <div class="hero-image reveal-right">
           <div class="card" aria-hidden="true">
-            <!-- inline SVG: アウトレット一覧サンプル -->
-            <svg class="screen-frame" width="420" height="260" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="アウトレット一覧サンプル">
-              <rect width="1200" height="760" rx="12" fill="#ffffff" stroke="#e6eef9"/>
-              <rect x="28" y="28" width="1144" height="64" rx="8" fill="#f2f7ff"/>
-              <text x="56" y="70" font-size="20" fill="#1e88e5" font-family="Noto Sans JP, Arial">アウトレット一覧（サンプル画面）</text>
-              <g transform="translate(40,120)" font-family="Noto Sans JP, Arial">
-                <rect width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-                <rect x="350" width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-                <rect x="700" width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-                <text x="16" y="30" font-size="16" fill="#333">商品名 001</text>
-                <text x="16" y="60" font-size="14" fill="#666">状態：良好</text>
-                <text x="16" y="100" font-size="18" fill="#d32f2f">¥12,000 → ¥6,000</text>
-              </g>
-            </svg>
+            <!-- ヒーロー右のサンプル表示を画像に変更 -->
+            <img src="/assets/outlet-sample.png" alt="アウトレット一覧（サンプル画面）" class="screen-image small" width="420" height="260" />
           </div>
         </div>
       </div>
@@ -179,52 +174,20 @@
       <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。</p>
       <div class="screen-grid">
         <figure class="reveal-up delay-2">
-          <!-- 商品一覧 (SVG) -->
-          <svg class="screen-frame" width="600" height="360" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="アウトレット一覧">
-            <rect width="1200" height="760" rx="12" fill="#ffffff" stroke="#e6eef9"/>
-            <rect x="28" y="28" width="1144" height="64" rx="8" fill="#f2f7ff"/>
-            <text x="56" y="70" font-size="20" fill="#1e88e5" font-family="Noto Sans JP, Arial">アウトレット一覧（サンプル）</text>
-            <g transform="translate(40,120)" font-family="Noto Sans JP, Arial">
-              <rect width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect x="350" width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect x="700" width="330" height="150" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-              <text x="16" y="30" font-size="16" fill="#333">商品名 001</text>
-              <text x="16" y="60" font-size="14" fill="#666">状態：良好</text>
-              <text x="16" y="100" font-size="18" fill="#d32f2f">¥12,000 → ¥6,000</text>
-            </g>
-          </svg>
+          <!-- 商品一覧：SVG を画像に置換 -->
+          <img src="/assets/outlet-list.png" alt="アウトレット一覧（サンプル）" class="screen-image" width="600" height="360" />
           <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">アウトレット一覧（絞り込み・価格表示）</figcaption>
         </figure>
 
         <figure class="reveal-up delay-3">
-          <!-- 商品詳細 (SVG) -->
-          <svg class="screen-frame" width="600" height="360" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="商品詳細サンプル">
-            <rect width="1200" height="760" rx="12" fill="#ffffff" stroke="#e6eef9"/>
-            <rect x="40" y="40" width="520" height="420" rx="8" fill="#f9fbff" stroke="#e6eef9"/>
-            <rect x="600" y="40" width="540" height="420" rx="8" fill="#fbfdff" stroke="#e6eef9"/>
-            <text x="60" y="76" font-size="20" fill="#111">商品名 001 - 詳細</text>
-            <text x="620" y="76" font-size="16" fill="#666">価格：¥6,000（アウトレット）</text>
-            <text x="620" y="120" font-size="14" fill="#333">数量：10</text>
-            <rect x="620" y="200" width="180" height="40" rx="6" fill="#1e88e5"/>
-            <text x="650" y="227" font-size="14" fill="#fff">申込に進む</text>
-          </svg>
+          <!-- 商品詳細：SVG を画像に置換 -->
+          <img src="/assets/outlet-detail.png" alt="商品詳細（サンプル）" class="screen-image" width="600" height="360" />
           <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">商品詳細（数量・状態・申込ボタン）</figcaption>
         </figure>
 
         <figure class="reveal-up delay-4">
-          <!-- 申込フォーム (SVG) -->
-          <svg class="screen-frame" width="600" height="360" viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="申込フォームサンプル">
-            <rect width="1200" height="760" rx="12" fill="#ffffff" stroke="#e6eef9"/>
-            <text x="60" y="70" font-size="20" fill="#111">申込フォーム（サンプル）</text>
-            <g transform="translate(60,110)" font-family="Noto Sans JP, Arial">
-              <rect width="1080" height="56" rx="6" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect y="80" width="1080" height="56" rx="6" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect y="160" width="1080" height="120" rx="6" fill="#fbfdff" stroke="#e6eef9"/>
-              <rect y="300" x="0" width="260" height="48" rx="6" fill="#1e88e5"/>
-              <text x="16" y="34" font-size="14" fill="#666">納入先 / 連絡先 / 備考</text>
-              <text x="16" y="332" font-size="14" fill="#fff">申込を送信</text>
-            </g>
-          </svg>
+          <!-- 申込フォーム：SVG を画像に置換 -->
+          <img src="/assets/outlet-form.png" alt="申込フォーム（サンプル）" class="screen-image" width="600" height="360" />
           <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">申込フォーム（確認の上、確定連絡）</figcaption>
         </figure>
       </div>
@@ -252,7 +215,6 @@
       </ol>
 
       <div style="text-align:center;margin-top:18px" class="reveal-up delay-5">
-        <!-- 下部CTAもログイン / 申込 を分けて表示 -->
         <a id="loginBtnBottom" class="btn primary large ripple" href="https://sedia.example.com/login" target="_blank" rel="noopener noreferrer">会員の方：ログイン</a>
         <a id="applyBtnBottom" class="btn ghost large" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer" style="margin-left:12px">未登録の方：申込へ</a>
       </div>
@@ -333,24 +295,7 @@
       loginBtn?.addEventListener('click', function () { logClick('会員：ログインへ進む'); });
       loginBtnBottom?.addEventListener('click', function () { logClick('会員：ログインへ進む（下部）'); });
 
-      // 補助機能（任意）：
-      // URLクエリに member=1 を付与して来訪した場合はログインへ自動案内する例
-      // （不要ならこの処理ごと削除してください）
-      try {
-        const qs = new URLSearchParams(window.location.search);
-        if (qs.get('member') === '1') {
-          // 会員であると想定してログイン画面へリダイレクト（新しいタブで開く）
-          const loginUrl = (loginBtn && loginBtn.href) ? loginBtn.href : null;
-          if (loginUrl) {
-            window.open(loginUrl, '_blank', 'noopener');
-            // Optional: focus on logged-in flow notification
-            console.log('member=1 が検出されたためログインページを新しいタブで開きました。');
-          }
-        }
-      } catch (e) { /* noop */ }
-
     })();
   </script>
 </body>
 </html>
-
