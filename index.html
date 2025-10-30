@@ -1,46 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>株式会社LIXIL セミナー動画 - WEBビジネス提案会</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea, #764ba2); min-height: 100vh; }
-        .header { background: rgba(255,255,255,.95); padding: 16px 0; box-shadow: 0 4px 16px rgba(0,0,0,.1); position: sticky; top: 0; }
-        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 700; font-size: 18px; color: #333; }
-        .back { background: linear-gradient(45deg,#ff6b6b,#ee5a24); color:#fff; padding:10px 18px; border-radius:20px; text-decoration:none; }
-        .main { max-width: 1200px; margin: 0 auto; padding: 28px 20px; }
-        .card { background: rgba(255,255,255,.96); border-radius: 20px; padding: 28px; box-shadow: 0 16px 32px rgba(0,0,0,.12); }
-        .center { text-align:center; }
-        .logo-emoji { font-size: 44px; margin-bottom: 8px; }
-        .name { font-size: 28px; font-weight: 700; margin-bottom: 8px; color:#333; }
-        .desc { color:#666; margin-bottom: 24px; }
-        .video { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background:#000; }
-        iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
-        .actions { margin-top: 18px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-        .btn { padding: 12px 18px; border-radius: 22px; text-decoration:none; color:#fff; font-weight:700; }
-        .primary { background: linear-gradient(45deg,#4ecdc4,#44a08d); }
-        .secondary { background: linear-gradient(45deg,#ff6b6b,#ee5a24); }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>セディア アウトレット - メンバー限定ランディングページ</title>
+  <meta name="description" content="セディアカスタマーWEB会員限定のアウトレット（在庫処分）ページの紹介ランディングページ。アウトレットの特徴、画面イメージ、申込の流れ、申込ボタンを設置しています。" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-    <div class="header"><div class="wrap"><div class="logo">🎥 WEBビジネス提案会</div><a class="back" href="booth.html">← ブース会場に戻る</a></div></div>
-    <div class="main">
-        <div class="card">
-            <div class="center">
-                <div class="logo-emoji">🏠</div>
-                <div class="name">株式会社LIXIL</div>
-                <div class="desc">住まいと暮らしの総合住生活ソリューションカンパニー</div>
-            </div>
-            <div class="video"><iframe src="https://www.youtube.com/embed/m8fptNAMKUM" allowfullscreen></iframe></div>
-            <div class="actions">
-                <a class="btn primary" href="products_LIXIL.html">🛍️ おすすめ商品を見る</a>
-            </div>
-        </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">Sedia Customer WEB - アウトレット</h1>
+      <p class="tag">会員限定｜長期在庫をアウトレット価格でご提供</p>
     </div>
+  </header>
+
+  <main>
+    <!-- Hero / ランディングTOP -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h2>お得に、必要な商品を。会員様限定のアウトレットセール</h2>
+          <p>当社の長期在庫・型落ち品・サンプル品などを、セディアカスタマーWEB会員様限定でアウトレット価格にて販売します。数量限定、早い者勝ちです。</p>
+
+          <!-- CTA: 申込ページへ（必ず実運用URLに差し替えてください） -->
+          <p class="note">※以下の「申込へ進む」ボタンは、セディアカスタマーWEB内の申込ページへ移動します。ログインしていない場合はログイン画面に遷移します。</p>
+          <div class="cta-row">
+            <a id="applyBtn" class="btn primary" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">申込へ進む（会員専用）</a>
+            <a class="btn ghost" href="#how-it-works">申込の流れを見る</a>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <img src="assets/screen1.svg" alt="アウトレット サンプル画面イメージ" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 特長 -->
+    <section id="features" class="features container">
+      <h3>アウトレットの特長</h3>
+      <ul class="features-list">
+        <li>
+          <strong>会員限定：</strong>セディアカスタマーWEBにご登録いただいている法人/担当者様のみ利用可能です。
+        </li>
+        <li>
+          <strong>アウトレット価格：</strong>通常価格より大幅割引の商品を限定数でご提供。
+        </li>
+        <li>
+          <strong>在庫一掃：</strong>長期在庫や型落ち、サンプルなどをアウトレット品として掲載。
+        </li>
+        <li>
+          <strong>簡単申込：</strong>申込フォームから購入申請 → 弊社で確認し、購入確定の連絡を差し上げます。
+        </li>
+      </ul>
+    </section>
+
+    <!-- 画面イメージ -->
+    <section id="screens" class="screens container">
+      <h3>画面イメージ</h3>
+      <p class="muted">下のスクリーンショットはイメージです。実際のUIはシステムのバージョンにより変わる場合があります。</p>
+      <div class="screen-grid">
+        <figure>
+          <img src="assets/screen1.svg" alt="アウトレット一覧画面のイメージ" />
+          <figcaption>アウトレット一覧（絞り込み・価格表示）</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/screen2.svg" alt="商品詳細画面イメージ" />
+          <figcaption>商品詳細（数量・状態・申込ボタン）</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/screen3.svg" alt="申込フォームイメージ" />
+          <figcaption>申込フォーム（確認の上、確定連絡）</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 申込の流れ -->
+    <section id="how-it-works" class="flow container">
+      <h3>申込の流れ</h3>
+      <ol class="flow-list">
+        <li>
+          <strong>1. 会員でログイン</strong>
+          <p>セディアカスタマーWEBにログインしてください（未登録の方はお問い合わせください）。</p>
+        </li>
+        <li>
+          <strong>2. アウトレット一覧から商品を選択</strong>
+          <p>商品状態・数量・価格を確認し、購入申込したい商品を選びます。</p>
+        </li>
+        <li>
+          <strong>3. 申込フォームに必要事項を入力</strong>
+          <p>購入希望数量・納入先・連絡先などを入力して送信します。</p>
+        </li>
+        <li>
+          <strong>4. 弊社で確認 → 購入確定</strong>
+          <p>在庫・価格を確認し、購入確定のご連絡（メール/システム内メッセージ）を行います。確定後、出荷/請求の手続きを開始します。</p>
+        </li>
+      </ol>
+
+      <div class="cta-centered">
+        <a class="btn primary large" href="https://sedia.example.com/outlet/apply" target="_blank" rel="noopener noreferrer">今すぐ申込へ（会員専用）</a>
+      </div>
+    </section>
+
+    <!-- よくある質問（簡易）-->
+    <section id="faq" class="faq container">
+      <h3>よくある質問（FAQ）</h3>
+      <dl>
+        <dt>Q. 会員でないと申し込めませんか？</dt>
+        <dd>A. はい。本ページの申込はセディアカスタマーWEB会員様限定です。未登録の方は営業担当までお問い合わせください。</dd>
+
+        <dt>Q. 商品の保証はどうなりますか？</dt>
+        <dd>A. アウトレット品は通常の商品と異なる取り扱い（保証範囲・返品条件）となることがあります。商品ごとに記載の条件をご確認ください。</dd>
+      </dl>
+    </section>
+
+    <!-- フッター -->
+    <footer class="site-footer">
+      <div class="container">
+        <p>© Sedia Corporation. All rights reserved.</p>
+        <p class="muted">このページはGitHub Pagesでホスティング可能な静的ランディングページです。申込先URLは運用環境のURLに差し替えてご利用ください。</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // 追跡用クリックイベント（必要なら編集してください）
+    document.getElementById('applyBtn')?.addEventListener('click', function () {
+      try { console.log('アウトレット申込ボタンがクリックされました'); } catch(e){}
+    });
+  </script>
 </body>
 </html>
-
-
