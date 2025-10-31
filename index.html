@@ -80,11 +80,31 @@ p{margin:0 0 12px;color:#093547}
 .sold-section h3{font-size:1.5rem;color:#0f9bff;}
 .sold-section p{font-size:0.95rem;color:#093547;margin-bottom:18px;}
 .sold-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;align-items:start}
-.sold-item{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);text-align:center;transition:transform .28s ease,box-shadow .28s ease}
-.sold-item:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 38px rgba(14,98,155,0.12);}
-.sold-item img{border-radius:8px;max-width:100%;height:auto;cursor:zoom-in}
+
+/* --- すべて同じ長方形に統一 --- */
+.sold-item{
+  background:var(--card);
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.04);
+  text-align:center;
+  transition:transform .28s ease,box-shadow .28s ease;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  height:320px; /* 高さ固定 */
+}
+.sold-item img{
+  border-radius:8px;
+  max-width:100%;
+  max-height:180px;
+  object-fit:contain;
+  cursor:zoom-in;
+}
 .sold-caption{margin-top:10px;font-size:0.98rem;color:#073a5a;line-height:1.2}
 .sold-label{display:block;color:#c00;font-weight:800;margin-top:6px}
+.sold-item:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 38px rgba(14,98,155,0.12);}
 
 /* Fixed footer CTA */
 .fixed-footer-cta {
@@ -103,8 +123,19 @@ p{margin:0 0 12px;color:#093547}
   gap: 12px;
   flex-wrap: wrap;
 }
-.fixed-footer-cta .btn { flex: 1 1 auto; max-width: 240px; text-align:center;}
-@media (max-width:480px){.fixed-footer-cta .cta-inner{flex-direction:column;}}
+.fixed-footer-cta .btn { 
+  flex: 1 1 auto; 
+  max-width: 240px; 
+  text-align:center;
+  background: linear-gradient(90deg,#ff9000,#ffc34d); /* ボタン色オレンジ系に変更 */
+  color:#fff;
+  border:none;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+.fixed-footer-cta .btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
 
 /* Reveal animation */
 .reveal-up{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
@@ -229,8 +260,8 @@ p{margin:0 0 12px;color:#093547}
 <!-- 固定フッターCTA -->
 <section class="fixed-footer-cta" aria-label="会員ログイン・新規申込">
   <div class="cta-inner">
-    <a class="btn primary ripple large" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener" aria-label="会員ログイン">会員ログイン</a>
-    <a class="btn primary ripple large" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener" aria-label="新規申込">新規申込</a>
+    <a class="btn ripple large" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener" aria-label="会員ログイン">会員ログイン</a>
+    <a class="btn ripple large" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener" aria-label="新規申込">新規申込</a>
   </div>
 </section>
 
