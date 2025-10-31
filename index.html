@@ -56,8 +56,6 @@
     .ripple:active:after{animation:rippleAnim .6s linear;opacity:0.28}
     @keyframes rippleAnim{to{transform:scale(8);opacity:0}}
 
-    .features{padding:26px 0}
-    .features-list{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:12px}
     .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 22px rgba(9,60,92,0.03);transition:transform .28s cubic-bezier(.2,.9,.3,1),box-shadow .28s}
     .card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 22px 40px rgba(14,98,155,0.08)}
 
@@ -122,17 +120,27 @@
     .delay-4{transition-delay:.30s}
     .delay-5{transition-delay:.38s}
 
+    /* Sold items grid */
+    .sold-section{padding:26px 0}
+    .sold-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;align-items:start}
+    .sold-item{background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);text-align:center}
+    .sold-item img{border-radius:8px;max-width:100%;height:auto;cursor:zoom-in}
+    .sold-caption{margin-top:10px;font-size:0.98rem;color:#073a5a}
+    .sold-label{display:block;color:#c00;font-weight:800;margin-top:6px}
+
     /* small screens */
     @media (max-width:1000px){
       .hero-inner{align-items:flex-start}
       .hero-image{text-align:left}
       h2{font-size:1.4rem}
+      .sold-grid{grid-template-columns:repeat(2,1fr)}
     }
     @media (max-width:640px){
       .container{padding:20px 16px}
       .hero-image img{max-width:100%}
       .hero-image{order:2}
       .hero-text{order:1}
+      .sold-grid{grid-template-columns:repeat(1,1fr)}
     }
   </style>
 </head>
@@ -168,14 +176,11 @@
           <p>当社の長期在庫・型落ち品などを、セディアカスタマーWEB会員様限定でアウトレット価格にて販売します。数量限定、早い者勝ちです。</p>
           <p class="note">※既に会員の方は「ログイン」ボタンからセディアカスタマーWEBへログインしてご利用ください。未登録の方は「申込へ進む（新規登録）」からお申し込みください。</p>
           <div class="cta-row">
-    
             <a id="loginBtn" class="btn primary ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener noreferrer" aria-label="セディアカスタマーWEBにログイン">会員の方はこちら（ログイン）</a>
 
             <!-- 未登録の方：申込（新規会員登録 / アウトレット申込） -->
-             <a id="applyBtn" class="btn primary ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer" aria-label="未登録の方はこちらから申込">申込へ進む（新規登録）</a>
-
-            <!-- 「申込の流れを見る」ボタンを画像に変更 -->
-            <a class="btn ghost" href="#how-it-works">申込の流れを見る</a>
+            <a id="applyBtn" class="btn primary ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer" aria-label="未登録の方はこちらから申込">申込へ進む（新規登録）</a>
+            <!-- 「申込の流れを見る」ボタンは削除しました -->
           </div>
         </div>
 
@@ -189,22 +194,31 @@
       <div style="height:28px;"></div>
     </section>
 
-    <section id="features" class="features container">
-      <h3 class="reveal-up">アウトレットの特長</h3>
-      <ul class="features-list">
-        <li class="card reveal-up delay-1">
-          <strong>会員限定：</strong>セディアカスタマーWEBにご登録いただいている会員様のみ利用可能です。
-        </li>
-        <li class="card reveal-up delay-2">
-          <strong>アウトレット価格：</strong>通常価格より大幅割引の商品を限定数でご提供。
-        </li>
-        <li class="card reveal-up delay-3">
-          <strong>在庫一掃：</strong>長期在庫や型落ち品などをアウトレット品として掲載。
-        </li>
-        <li class="card reveal-up delay-4">
-          <strong>簡単申込：</strong>申込フォームからまずは、カスタマ―WEBの会員申し込みをお願いいたします。
-        </li>
-      </ul>
+    <!-- これまでに売れた商品（4点横並び） -->
+    <section id="sold" class="sold-section container">
+      <h3 class="reveal-up">これまでに売れた商品</h3>
+      <p class="note reveal-up delay-1">下の画像は過去に販売された商品の一例です。クリックすると拡大表示します。</p>
+      <div class="sold-grid reveal-up delay-2" role="list">
+        <figure class="sold-item" role="listitem">
+          <img src="sold1.jpg" data-full="sold1.jpg" alt="商品A" class="screen-image" width="320" height="240" />
+          <figcaption class="sold-caption">商品A <span class="sold-label">sold out</span></figcaption>
+        </figure>
+
+        <figure class="sold-item" role="listitem">
+          <img src="sold2.jpg" data-full="sold2.jpg" alt="商品B" class="screen-image" width="320" height="240" />
+          <figcaption class="sold-caption">商品B <span class="sold-label">sold out</span></figcaption>
+        </figure>
+
+        <figure class="sold-item" role="listitem">
+          <img src="sold3.jpg" data-full="sold3.jpg" alt="商品C" class="screen-image" width="320" height="240" />
+          <figcaption class="sold-caption">商品C <span class="sold-label">sold out</span></figcaption>
+        </figure>
+
+        <figure class="sold-item" role="listitem">
+          <img src="sold4.jpg" data-full="sold4.jpg" alt="商品D" class="screen-image" width="320" height="240" />
+          <figcaption class="sold-caption">商品D <span class="sold-label">sold out</span></figcaption>
+        </figure>
+      </div>
     </section>
 
     <section id="screens" class="screens container">
@@ -228,34 +242,6 @@
           <img src="outletPC3.JPG" data-full="outletPC3.JPG" alt="申込フォーム（サンプル）" class="screen-image" width="600" height="360" />
           <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">申込フォーム（確認の上、確定連絡）</figcaption>
         </figure>
-      </div>
-    </section>
-
-    <section id="how-it-works" class="flow container">
-      <h3 class="reveal-up">申込の流れ</h3>
-      <ol class="flow-list">
-        <li class="card reveal-up delay-1">
-          <strong>1. 会員でログイン</strong>
-          <p>既に会員の方はセディアカスタマーWEBにログインして、アウトレットサイトをご覧ください。</p>
-        </li>
-        <li class="card reveal-up delay-2">
-          <strong>2. 未会員の方は、ページ上部にある「申込へ進む（新規登録）」ボタンより、まずお申込みください。</strong>
-          <p>ボタンをクリックすると、申込ページへ遷移します。</p>
-        </li>
-        <li class="card reveal-up delay-3">
-          <strong>3. 申込いただいた数営業日後、仮登録メールが届きますので、メールより本登録をお願いします。</strong>
-          <p>申込アドレス宛に、送信元アドレス：from_sedia-customerweb@sedia-system.co.jp<br>
-件名： 【渡辺パイプ　セディアカスタマーウェブ】ユーザー仮登録のお知らせ  という仮登録メールが届きますので、ログイン願います。</p>
-        </li>
-        <li class="card reveal-up delay-4">
-          <strong>4. SEDIAカスタマ―WEBにログインいただき、アウトレットページをご覧ください。</strong>
-          <p>表示限りのアウトレット品になりますので、お見逃しないようご注意ください！</p>
-        </li>
-      </ol>
-
-      <div style="text-align:center;margin-top:18px" class="reveal-up delay-5">
-        <a id="loginBtnBottom" class="btn primary large ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener noreferrer">会員の方：ログイン</a>
-         <a id="applyBtnBottom" class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer">申込へ進む（未登録の方）</a>
       </div>
     </section>
 
@@ -425,6 +411,3 @@
   </script>
 </body>
 </html>
-
-
-
