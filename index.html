@@ -33,16 +33,34 @@
     @keyframes blobMove{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
 
     .container{max-width:var(--max-w);margin:0 auto;padding:30px 20px;position:relative;z-index:2}
-    .site-header{background:linear-gradient(90deg,rgba(255,127,80,0.95),rgba(255,161,94,0.95));Color:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 25px var(--shadow-1)}
+
+    /* Header with animated gradient */
+    .site-header{
+      background: linear-gradient(270deg,#ff7f50,#ffa15e,#ff7f50,#ffa15e);
+      background-size: 800% 800%;
+      animation: gradientAnim 15s ease infinite;
+      color:#fff;
+      padding:18px;
+      border-radius:10px;
+      box-shadow:0 8px 25px var(--shadow-1);
+    }
+    @keyframes gradientAnim{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
     .header-inner{display:flex;flex-direction:column;gap:4px}
     .logo{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:0.3px}
     .tag{margin:0;color:rgba(255,255,255,0.95);font-weight:600;font-size:0.95rem}
 
+    /* Hero */
     .hero{padding:44px 0 18px;position:relative;overflow:visible}
     .hero-inner{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
     .hero-text{flex:1;min-width:300px;max-width:640px}
     .hero-image{flex:1;min-width:280px;text-align:right}
     .hero-image .card{display:inline-block;border-radius:14px;padding:14px;background:linear-gradient(180deg,#fff,#fff7f0);box-shadow:0 12px 34px var(--shadow-1);border:1px solid #ffe0b3}
+
     h2{font-size:1.7rem;margin:0 0 12px;color:#073a5a}
     p{margin:0 0 12px;color:#093547}
     .note{font-size:0.92rem;color:var(--muted)}
@@ -60,32 +78,6 @@
     .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 22px rgba(9,60,92,0.03);transition:transform .28s cubic-bezier(.2,.9,.3,1),box-shadow .28s}
     .card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 22px 40px rgba(14,98,155,0.08)}
 
-    .screens{padding:20px 0}
-    .screen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:12px}
-    .screen-frame{width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);background:#fff;padding:12px;box-shadow:0 12px 30px rgba(11,56,92,0.03)}
-    .screen-image{display:block;max-width:100%;width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 12px 30px rgba(11,56,92,0.03);cursor:zoom-in}
-    .screen-image.small{max-width:420px}
-    .flow-thumb{height:auto;max-height:48px;border-radius:8px;display:block;border:1px solid rgba(0,0,0,0.04);cursor:zoom-in}
-
-    /* Lightbox */
-    .lb-overlay{position:fixed;inset:0;background:rgba(3,10,18,0.7);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;animation:fadeIn .18s ease}
-    .lb-overlay.open{display:flex}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .lb-content{max-width:calc(100vw - 48px);max-height:calc(100vh - 48px);position:relative;display:flex;align-items:center;justify-content:center}
-    .lb-img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 18px 40px rgba(0,0,0,0.45);transform-origin:center;animation:pop .18s cubic-bezier(.2,.9,.3,1)}
-    @keyframes pop{from{transform:scale(.98);opacity:0.9}to{transform:scale(1);opacity:1}}
-    .lb-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;backdrop-filter: blur(4px);}
-    .lb-caption{margin-top:12px;color:#fff;font-size:0.95rem;text-align:center;max-width:90vw;word-break:break-word;}
-
-    .reveal-up{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
-    .reveal-right{opacity:0;transform:translateX(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
-    .reveal-up.is-visible, .reveal-right.is-visible{opacity:1;transform:none}
-    .delay-1{transition-delay:.06s}
-    .delay-2{transition-delay:.14s}
-    .delay-3{transition-delay:.22s}
-    .delay-4{transition-delay:.30s}
-    .delay-5{transition-delay:.38s}
-
     /* Sold items grid */
     .sold-section{padding:26px 0}
     .sold-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;align-items:start}
@@ -95,9 +87,6 @@
     .sold-label{display:block;font-weight:800;margin-top:6px}
     .sold-label.sold{color:#c00;}
     .sold-label.request{color:var(--accent);background:#fff0e6;padding:2px 6px;border-radius:6px;font-size:0.85rem}
-
-    /* 特典ブロック */
-    .benefit .card{background:var(--highlight);text-align:center;padding:24px;margin:28px 0;border-radius:12px;}
 
     @media (max-width:1000px){
       .hero-inner{align-items:flex-start}
@@ -116,22 +105,6 @@
 </head>
 <body>
 
-<!-- Lightbox -->
-<div id="lightbox" class="lb-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="lb-content" id="lbContent">
-    <button id="lbClose" class="lb-close" aria-label="閉じる">&times;</button>
-    <img id="lbImage" class="lb-img" src="" alt="" />
-  </div>
-  <div id="lbCaption" class="lb-caption" aria-hidden="true"></div>
-</div>
-
-<!-- Background blobs -->
-<div class="page-bg" aria-hidden="true">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-</div>
-
 <header class="site-header">
   <div class="container header-inner">
     <h1 class="logo">SEDIA カスタマー WEB - アウトレット</h1>
@@ -144,8 +117,7 @@
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-text reveal-up">
-        <h2><span style="color:var(--accent)">限定特価</span>で賢く仕入れ！<br>人気商品を見逃さないで</h2>
-        <p>セディア会員様限定の特別アウトレット。数量限定・早い者勝ち！</p>
+        <h2>お得に、必要な商品を。<br>会員様限定のアウトレットセール</h2>
         <p class="note">※既に会員の方は「ログイン」ボタンからご利用ください。未登録の方は「申込へ進む」からお申し込みください。</p>
         <div class="cta-row">
           <a class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank">
@@ -163,96 +135,7 @@
       </div>
     </div>
   </section>
-
-  <!-- 特典ブロック -->
-  <section class="benefit container reveal-up">
-    <div class="card">
-      <h3>🎯 会員登録で得られる3つのメリット</h3>
-      <ul style="list-style:none;padding:0;margin:16px 0;font-weight:600;color:#073a5a;">
-        <li>✅ 限定アウトレット価格で仕入れ可能</li>
-        <li>✅ 新着・再入荷情報をメールでお届け</li>
-        <li>✅ 通常商品とまとめて発注可能</li>
-      </ul>
-      <a class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank">
-        無料で登録してアウトレットをチェック
-      </a>
-    </div>
-  </section>
-
-  <!-- Sold items -->
-  <section id="sold" class="sold-section container">
-    <h3 class="reveal-up">人気商品ランキング（完売多数！）</h3>
-    <p class="note reveal-up delay-1">下記は過去に完売した人気商品例です。<br><span style="color:var(--accent)">※再入荷リクエストも受付中！</span></p>
-    <div class="sold-grid reveal-up delay-2" role="list">
-      <figure class="sold-item" role="listitem">
-        <img src="TCF6543AM.jpg" data-full="sold1.jpg" alt="商品A" class="screen-image" />
-        <figcaption class="sold-caption">TOTO<br>ウォシュレットＳ１Ａ　 TCF6543AM  #NW1<span class="sold-label sold">sold out</span></figcaption>
-      </figure>
-      <figure class="sold-item" role="listitem">
-        <img src="TKGG31EZ.jpg" data-full="sold2.jpg" alt="商品B" class="screen-image" />
-        <figcaption class="sold-caption">TOTO<br>台付シングル１３ TKGG31EZ<span class="sold-label sold">sold out</span></figcaption>
-      </figure>
-      <figure class="sold-item" role="listitem">
-        <img src="CS-G321M.jpg" data-full="sold3.jpg" alt="商品C" class="screen-image" />
-        <figcaption class="sold-caption">三菱電機<br>ＩＨクッキングヒーター CS-G321M<span class="sold-label sold">sold out</span></figcaption>
-      </figure>
-      <figure class="sold-item" role="listitem">
-        <img src="GT-C2062SARX-2BL.jpg" data-full="sold4.jpg" alt="商品D" class="screen-image" />
-        <figcaption class="sold-caption">ノーリツ<br>ｴｺｼﾞｮｰｽﾞ GT-C2062SARX-2BL 20A LPG<span class="sold-label sold">sold out</span></figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ご注文までの流れ -->
-  <section id="screens" class="screens container">
-    <h3 class="reveal-up">ご注文までの流れ</h3>
-    <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。クリックすると拡大表示します。</p>
-    <div class="screen-grid">
-      <figure class="reveal-up delay-2">
-        <img src="outletPC1.jpg" data-full="outletPC1.jpg" alt="アウトレット一覧（サンプル）" class="screen-image" />
-        <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">セディアカスタマーWEBにログインし、アウトレットを検索します（絞り込み・価格表示）</figcaption>
-      </figure>
-      <figure class="reveal-up delay-3">
-        <img src="outletPC2.jpg" data-full="outletPC2.jpg" alt="商品詳細（サンプル）" class="screen-image" />
-        <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">商品詳細ページで数量・仕様を確認できます</figcaption>
-      </figure>
-      <figure class="reveal-up delay-4">
-        <img src="outletPC3.jpg" data-full="outletPC3.jpg" alt="注文確定（サンプル）" class="screen-image" />
-        <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">カートに入れて注文確定。簡単・スピーディー</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 最下部CTA -->
-  <section class="cta-bottom container reveal-up">
-    <div class="card">
-      <h3>今すぐセディアカスタマーWEBに参加して、<br>お得なアウトレット情報を逃さない！</h3>
-      <a class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank">
-        新規申込はこちら（無料）
-      </a>
-    </div>
-  </section>
 </main>
-
-<script>
-  // Lightbox
-  const lbOverlay=document.getElementById('lightbox');
-  const lbImg=document.getElementById('lbImage');
-  const lbCaption=document.getElementById('lbCaption');
-  const lbClose=document.getElementById('lbClose');
-  document.querySelectorAll('.screen-image').forEach(img=>{
-    img.addEventListener('click',()=>{lbImg.src=img.dataset.full||img.src;lbCaption.textContent=img.alt;lbOverlay.classList.add('open')})
-  });
-  lbClose.addEventListener('click',()=>{lbOverlay.classList.remove('open')});
-  lbOverlay.addEventListener('click',e=>{if(e.target===lbOverlay)lbOverlay.classList.remove('open')});
-
-  // Reveal animations
-  const revealEls=document.querySelectorAll('.reveal-up, .reveal-right');
-  const observer=new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}})
-  },{threshold:0.15});
-  revealEls.forEach(el=>observer.observe(el));
-</script>
 
 </body>
 </html>
