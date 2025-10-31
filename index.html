@@ -127,7 +127,7 @@ p{margin:0 0 12px;color:#093547}
   flex: 1 1 auto; 
   max-width: 240px; 
   text-align:center;
-  background: linear-gradient(90deg,#ff9000,#ffc34d); /* ボタン色オレンジ系に変更 */
+  background: linear-gradient(90deg,#ff9000,#ffc34d); /* オレンジに変更 */
   color:#fff;
   border:none;
   box-shadow:0 4px 12px rgba(0,0,0,0.15);
@@ -147,6 +147,37 @@ p{margin:0 0 12px;color:#093547}
 .delay-4{transition-delay:.30s}
 .delay-5{transition-delay:.38s}
 
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  cursor: zoom-out;
+  overflow: hidden;
+}
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  transform: scale(0);
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+#lightbox.show img {
+  transform: scale(1);
+}
+#lightbox .lb-caption {
+  position: absolute;
+  bottom: 30px;
+  color: #fff;
+  font-size: 0.95rem;
+  text-align: center;
+  width: 100%;
+}
+
 /* Media queries */
 @media (max-width:1000px){.hero-inner{align-items:flex-start}.hero-image{text-align:left}.h2{font-size:1.4rem}.sold-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){.container{padding:20px 16px}.hero-image img{max-width:100%}.hero-image{order:2}.hero-text{order:1}.sold-grid{grid-template-columns:repeat(1,1fr)}}
@@ -155,12 +186,9 @@ p{margin:0 0 12px;color:#093547}
 </head>
 <body>
 <!-- Lightbox overlay -->
-<div id="lightbox" class="lb-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="lb-content" id="lbContent">
-    <button id="lbClose" class="lb-close" aria-label="閉じる">&times;</button>
-    <img id="lbImage" class="lb-img" src="" alt="" />
-  </div>
-  <div id="lbCaption" class="lb-caption" aria-hidden="true"></div>
+<div id="lightbox">
+  <img id="lbImage" src="" alt="">
+  <div class="lb-caption" id="lbCaption"></div>
 </div>
 
 <!-- Background blobs -->
@@ -285,21 +313,29 @@ p{margin:0 0 12px;color:#093547}
 })();
 
 // Lightbox
-const lb = document.getElementById('lightbox'),
-      lbImg = document.getElementById('lbImage'),
-      lbClose = document.getElementById('lbClose'),
-      lbCaption = document.getElementById('lbCaption');
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImage');
+const lbCaption = document.getElementById('lbCaption');
+
 document.querySelectorAll('.screen-image').forEach(img => {
-  img.addEventListener('click', () => {
-    lb.style.display='flex';
+  img.addEventListener('click', (e) => {
+    const rect = img.getBoundingClientRect();
+    const clickX = e.clientX;
+    const clickY = e.clientY;
+
+    lb.style.display = 'flex';
+    lbImg.style.transformOrigin = `${(clickX - rect.left)/rect.width*100}% ${(clickY - rect.top)/rect.height*100}%`;
     lbImg.src = img.dataset.full || img.src;
     lbCaption.innerText = img.alt || '';
+
+    setTimeout(() => lb.classList.add('show'), 10);
   });
 });
-lbClose.addEventListener('click', () => lb.style.display='none');
-lb.addEventListener('click', e => { if(e.target==lb) lb.style.display='none'; });
+
+lb.addEventListener('click', () => {
+  lb.classList.remove('show');
+  setTimeout(() => lb.style.display='none', 350);
+});
 </script>
 </body>
 </html>
-
-
