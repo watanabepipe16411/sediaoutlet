@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>セディア アウトレット - メンバー限定ランディングページ</title>
+  <meta name="description" content="セディアカスタマーWEB会員限定のアウトレット（在庫処分）紹介ランディングページ。水色背景・アニメーションで視覚的に訴求します。" />
+  <style>
+    :root{
+      --max-w:1100px;
+      --accent:#0f9bff;
+      --accent-2:#5ce1ff;
+      --muted:#556;
+      --bg-start:#e8f7ff;
+      --bg-end:#f4fbff;
+      --card:#fff;
+      --radius:14px;
+      --shadow-1: rgba(16,115,203,0.08);
+      font-family:"Noto Sans JP","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color-scheme:light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg-start),var(--bg-end));color:#072a3f;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    /* Background floating blobs */
+    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+    .blob{position:absolute;border-radius:50%;filter:blur(28px);opacity:0.18;transform-origin:center;animation:blobMove 12s ease-in-out infinite}
+    .b1{width:360px;height:360px;background:linear-gradient(135deg,#9ee7ff,#5ec2ff);left:-80px;top:6%}
+    .b2{width:260px;height:260px;background:linear-gradient(135deg,#7fe1ff,#56b0ff);right:-60px;top:30%;animation-duration:16s;opacity:0.14}
+    .b3{width:180px;height:180px;background:linear-gradient(135deg,#c3f6ff,#9beaff);left:10%;bottom:-60px;animation-duration:20s;opacity:0.12}
+    @keyframes blobMove{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
+
+    .container{max-width:var(--max-w);margin:0 auto;padding:30px 20px;position:relative;z-index:2}
+    .site-header{background:linear-gradient(90deg,rgba(16,115,203,0.95),rgba(27,151,235,0.95));Color:#fff;padding:18px;border-radius:10px;box-shadow:0 8px 25px var(--shadow-1)}
+    .header-inner{display:flex;flex-direction:column;gap:4px}
+    .logo{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:0.3px}
+    .tag{margin:0;color:rgba(255,255,255,0.95);font-weight:600;font-size:0.95rem}
+
+    .hero{padding:44px 0 18px;position:relative;overflow:visible}
+    .hero-inner{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+    .hero-text{flex:1;min-width:300px;max-width:640px}
+    .hero-image{flex:1;min-width:280px;text-align:right}
+    .hero-image .card{display:inline-block;border-radius:14px;padding:14px;background:linear-gradient(180deg,#fff,#fbfeff);box-shadow:0 12px 34px var(--shadow-1);border:1px solid rgba(0,0,0,0.04)}
+    h2{font-size:1.7rem;margin:0 0 12px;color:#073a5a}
+    p{margin:0 0 12px;color:#093547}
+    .note{font-size:0.92rem;color:var(--muted)}
+
+    .cta-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:1px solid transparent;font-weight:700;transition:transform .18s ease,box-shadow .18s ease;position:relative;overflow:hidden}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 28px var(--shadow-1)}
+    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(15,155,255,0.12)}
+    .btn.large{padding:14px 22px;font-size:1.02rem;border-radius:12px}
+
+    /* ripple effect - visual fallback for pointer events */
+    .ripple:after{content:"";position:absolute;border-radius:50%;transform:scale(0);opacity:0;pointer-events:none}
+    .ripple:active:after{animation:rippleAnim .6s linear;opacity:0.28}
+    @keyframes rippleAnim{to{transform:scale(8);opacity:0}}
+
+    .features{padding:26px 0}
+    .features-list{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:12px}
+    .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 22px rgba(9,60,92,0.03);transition:transform .28s cubic-bezier(.2,.9,.3,1),box-shadow .28s}
+    .card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 22px 40px rgba(14,98,155,0.08)}
+
+    .screens{padding:20px 0}
+    .screen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:12px}
+    .screen-frame{width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);background:#fff;padding:12px;box-shadow:0 12px 30px rgba(11,56,92,0.03)}
+
+    /* 画像として挿入する場合のスタイル */
+    .screen-image{display:block;max-width:100%;width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 12px 30px rgba(11,56,92,0.03);cursor:zoom-in}
+    .screen-image.small{max-width:420px}
+    .flow-thumb{height:auto;max-height:48px;border-radius:8px;display:block;border:1px solid rgba(0,0,0,0.04);cursor:zoom-in}
+
+    /* Lightbox / Modal */
+    .lb-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(3,10,18,0.7);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:20px;
+      animation:fadeIn .18s ease;
+    }
+    .lb-overlay.open{display:flex}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .lb-content{max-width:calc(100vw - 48px);max-height:calc(100vh - 48px);position:relative;display:flex;align-items:center;justify-content:center}
+    .lb-img{
+      max-width:100%;
+      max-height:100%;
+      border-radius:8px;
+      box-shadow:0 18px 40px rgba(0,0,0,0.45);
+      transform-origin:center;
+      animation:pop .18s cubic-bezier(.2,.9,.3,1);
+    }
+    @keyframes pop{from{transform:scale(.98);opacity:0.9}to{transform:scale(1);opacity:1}}
+
+    .lb-close{
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.12);
+      color:#fff;
+      width:40px;height:40px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer;font-size:18px;
+      backdrop-filter: blur(4px);
+    }
+    .lb-caption{
+      margin-top:12px;color:#fff;font-size:0.95rem;text-align:center;
+      max-width:90vw;word-break:break-word;
+    }
+
+    /* Reveal animation */
+    .reveal-up{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
+    .reveal-right{opacity:0;transform:translateX(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
+    .reveal-up.is-visible, .reveal-right.is-visible{opacity:1;transform:none}
+    .delay-1{transition-delay:.06s}
+    .delay-2{transition-delay:.14s}
+    .delay-3{transition-delay:.22s}
+    .delay-4{transition-delay:.30s}
+    .delay-5{transition-delay:.38s}
+
+    /* small screens */
+    @media (max-width:1000px){
+      .hero-inner{align-items:flex-start}
+      .hero-image{text-align:left}
+      h2{font-size:1.4rem}
+    }
+    @media (max-width:640px){
+      .container{padding:20px 16px}
+      .hero-image img{max-width:100%}
+      .hero-image{order:2}
+      .hero-text{order:1}
+    }
+  </style>
+</head>
+<body>
+  <!-- Lightbox overlay -->
+  <div id="lightbox" class="lb-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lb-content" id="lbContent">
+      <button id="lbClose" class="lb-close" aria-label="閉じる">&times;</button>
+      <img id="lbImage" class="lb-img" src="" alt="" />
+    </div>
+    <div id="lbCaption" class="lb-caption" aria-hidden="true"></div>
+  </div>
+
+  <!-- Animated background blobs -->
+  <div class="page-bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo">SEDIA カスタマー WEB - アウトレット</h1>
+      <p class="tag">会員限定｜訳アリ在庫をアウトレット価格でご提供</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text reveal-up">
+          <h2>お得に、必要な商品を。<br>会員様限定のアウトレットセール</h2>
+          <p>当社の長期在庫・型落ち品などを、セディアカスタマーWEB会員様限定でアウトレット価格にて販売します。数量限定、早い者勝ちです。</p>
+          <p class="note">※既に会員の方は「ログイン」ボタンからセディアカスタマーWEBへログインしてご利用ください。未登録の方は「申込へ進む（新規登録）」からお申し込みください。</p>
+          <div class="cta-row">
+    
+            <a id="loginBtn" class="btn primary ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener noreferrer" aria-label="セディアカスタマーWEBにログイン">会員の方はこちら（ログイン）</a>
+
+            <!-- 未登録の方：申込（新規会員登録 / アウトレット申込） -->
+             <a id="applyBtn" class="btn primary ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer" aria-label="未登録の方はこちらから申込">申込へ進む（新規登録）</a>
+
+            <!-- 「申込の流れを見る」ボタンを画像に変更 -->
+            <a class="btn ghost" href="#how-it-works">申込の流れを見る</a>
+          </div>
+        </div>
+
+        <div class="hero-image reveal-right">
+          <div class="card" aria-hidden="true">
+            <!-- ヒーロー右のサンプル表示を画像に変更 (data-full に高解像度画像を置けます) -->
+            <img src="outletPC1.jpg" data-full="outletPC1.jpg" alt="アウトレット一覧サンプル" class="screen-image small" width="840" height="520" />
+          </div>
+        </div>
+      </div>
+      <div style="height:28px;"></div>
+    </section>
+
+    <section id="features" class="features container">
+      <h3 class="reveal-up">アウトレットの特長</h3>
+      <ul class="features-list">
+        <li class="card reveal-up delay-1">
+          <strong>会員限定：</strong>セディアカスタマーWEBにご登録いただいている会員様のみ利用可能です。
+        </li>
+        <li class="card reveal-up delay-2">
+          <strong>アウトレット価格：</strong>通常価格より大幅割引の商品を限定数でご提供。
+        </li>
+        <li class="card reveal-up delay-3">
+          <strong>在庫一掃：</strong>長期在庫や型落ち品などをアウトレット品として掲載。
+        </li>
+        <li class="card reveal-up delay-4">
+          <strong>簡単申込：</strong>申込フォームからまずは、カスタマ―WEBの会員申し込みをお願いいたします。
+        </li>
+      </ul>
+    </section>
+
+    <section id="screens" class="screens container">
+      <h3 class="reveal-up">画面イメージ</h3>
+      <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。クリックすると拡大表示します。</p>
+      <div class="screen-grid">
+        <figure class="reveal-up delay-2">
+          <!-- 商品一覧：SVG を画像に置換 -->
+          <img src="outletPC1.jpg" data-full="outletPC1.jpg" alt="アウトレット一覧（サンプル）" class="screen-image" width="600" height="360" />
+          <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">アウトレット一覧（絞り込み・価格表示）</figcaption>
+        </figure>
+
+        <figure class="reveal-up delay-3">
+          <!-- 商品詳細：SVG を画像に置換 -->
+          <img src="outletPC2.jpg" data-full="outletPC2.jpg" alt="商品詳細（サンプル）" class="screen-image" width="600" height="360" />
+          <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">商品詳細（数量・状態・申込ボタン）</figcaption>
+        </figure>
+
+        <figure class="reveal-up delay-4">
+          <!-- 申込フォーム：SVG を画像に置換 -->
+          <img src="outletPC3.JPG" data-full="outletPC3.JPG" alt="申込フォーム（サンプル）" class="screen-image" width="600" height="360" />
+          <figcaption style="color:var(--muted);font-size:0.95rem;margin-top:8px">申込フォーム（確認の上、確定連絡）</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="flow container">
+      <h3 class="reveal-up">申込の流れ</h3>
+      <ol class="flow-list">
+        <li class="card reveal-up delay-1">
+          <strong>1. 会員でログイン</strong>
+          <p>既に会員の方はセディアカスタマーWEBにログインして、アウトレットサイトをご覧ください。</p>
+        </li>
+        <li class="card reveal-up delay-2">
+          <strong>2. 未会員の方は、ページ上部にある「申込へ進む（新規登録）」ボタンより、まずお申込みください。</strong>
+          <p>ボタンをクリックすると、申込ページへ遷移します。</p>
+        </li>
+        <li class="card reveal-up delay-3">
+          <strong>3. 申込いただいた数営業日後、仮登録メールが届きますので、メールより本登録をお願いします。</strong>
+          <p>申込アドレス宛に、送信元アドレス：from_sedia-customerweb@sedia-system.co.jp<br>
+件名： 【渡辺パイプ　セディアカスタマーウェブ】ユーザー仮登録のお知らせ  という仮登録メールが届きますので、ログイン願います。</p>
+        </li>
+        <li class="card reveal-up delay-4">
+          <strong>4. SEDIAカスタマ―WEBにログインいただき、アウトレットページをご覧ください。</strong>
+          <p>表示限りのアウトレット品になりますので、お見逃しないようご注意ください！</p>
+        </li>
+      </ol>
+
+      <div style="text-align:center;margin-top:18px" class="reveal-up delay-5">
+        <a id="loginBtnBottom" class="btn primary large ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener noreferrer">会員の方：ログイン</a>
+         <a id="applyBtnBottom" class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank" rel="noopener noreferrer">申込へ進む（未登録の方）</a>
+      </div>
+    </section>
+
+    <section id="faq" class="faq container">
+      <h3 class="reveal-up">よくある質問（FAQ）</h3>
+      <dl class="reveal-up delay-1">
+        <dt>Q. 会員でないと申し込めませんか？</dt>
+        <dd>A. はい。本ページの申込はセディアカスタマーWEB会員様限定です。未登録の方は上部の「申込へ進む（未登録の方）」ボタンからお申し込みください。営業担当へ直接お問い合わせでも対応可能です。</dd>
+
+        <dt>Q. 商品の保証はどうなりますか？</dt>
+        <dd>A. アウトレット品は通常の商品と異なり、原則返品不可となりますのでご注意ください。</dd>
+      </dl>
+    </section>
+
+    <footer class="site-footer container">
+      <p>© Sedia Corporation. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      // Reveal (IntersectionObserver)
+      const revealItems = document.querySelectorAll('.reveal-up, .reveal-right');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealItems.forEach(el => io.observe(el));
+      } else {
+        revealItems.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // Ripple
+      document.querySelectorAll('.ripple').forEach(btn => {
+        btn.addEventListener('pointerdown', function (e) {
+          const rect = btn.getBoundingClientRect();
+          const circle = document.createElement('span');
+          const d = Math.max(rect.width, rect.height) * 2;
+          circle.style.width = circle.style.height = d + 'px';
+          circle.style.left = (e.clientX - rect.left - d/2) + 'px';
+          circle.style.top = (e.clientY - rect.top - d/2) + 'px';
+          circle.style.position = 'absolute';
+          circle.style.borderRadius = '50%';
+          circle.style.background = 'rgba(255,255,255,0.22)';
+          circle.style.transform = 'scale(0)';
+          circle.style.pointerEvents = 'none';
+          circle.style.transition = 'transform .6s, opacity .6s';
+          btn.appendChild(circle);
+          requestAnimationFrame(() => circle.style.transform = 'scale(1)');
+          setTimeout(() => {
+            circle.style.opacity = '0';
+            setTimeout(() => circle.remove(), 600);
+          }, 300);
+        });
+      });
+
+      // Lightbox implementation
+      const lightbox = document.getElementById('lightbox');
+      const lbImage = document.getElementById('lbImage');
+      const lbCaption = document.getElementById('lbCaption');
+      const lbClose = document.getElementById('lbClose');
+
+      // Collect clickable images (gallery)
+      const galleryImages = Array.from(document.querySelectorAll('.screen-image, .flow-thumb'));
+      let currentIndex = -1;
+
+      function openLightbox(index) {
+        const img = galleryImages[index];
+        if (!img) return;
+        const full = img.dataset.full || img.src;
+        lbImage.src = full;
+        lbImage.alt = img.alt || '';
+        lbCaption.textContent = img.getAttribute('data-caption') || img.alt || '';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        currentIndex = index;
+        // focus close button for accessibility
+        lbClose.focus();
+        // prevent background scrolling
+        document.documentElement.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lbImage.src = '';
+        currentIndex = -1;
+        document.documentElement.style.overflow = '';
+      }
+
+      // Click handler on each gallery image
+      galleryImages.forEach((img, i) => {
+        img.addEventListener('click', (e) => {
+          e.preventDefault();
+          openLightbox(i);
+        });
+        // keyboard accessibility: Enter or Space opens
+        img.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLightbox(i);
+          }
+        });
+        // make focusable if not naturally
+        if (!img.hasAttribute('tabindex')) img.setAttribute('tabindex', '0');
+      });
+
+      // Close when clicking overlay (but not the image)
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lbClose) {
+          closeLightbox();
+        }
+      });
+
+      // Close via close button
+      lbClose.addEventListener('click', closeLightbox);
+
+      // Keyboard: ESC to close, ArrowLeft/ArrowRight to navigate
+      document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('open')) {
+          if (e.key === 'Escape') {
+            closeLightbox();
+          } else if (e.key === 'ArrowLeft') {
+            // prev
+            e.preventDefault();
+            const prev = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            openLightbox(prev);
+          } else if (e.key === 'ArrowRight') {
+            // next
+            e.preventDefault();
+            const next = (currentIndex + 1) % galleryImages.length;
+            openLightbox(next);
+          }
+        }
+      });
+
+      // If image fails to load, show alt text in caption
+      lbImage.addEventListener('error', function () {
+        lbCaption.textContent = '画像を読み込めませんでした';
+        lbImage.style.display = 'none';
+      });
+      lbImage.addEventListener('load', function () {
+        lbImage.style.display = '';
+      });
+
+      // Button click logging (kept from original)
+      const applyBtn = document.getElementById('applyBtn');
+      const applyBtnBottom = document.getElementById('applyBtnBottom');
+      const loginBtn = document.getElementById('loginBtn');
+      const loginBtnBottom = document.getElementById('loginBtnBottom');
+
+      function logClick(label){
+        try { console.log(label + ' がクリックされました'); } catch(e){}
+      }
+
+      applyBtn?.addEventListener('click', function () { logClick('未登録の方：申込へ進む'); });
+      applyBtnBottom?.addEventListener('click', function () { logClick('未登録の方：申込へ進む（下部）'); });
+      loginBtn?.addEventListener('click', function () { logClick('会員：ログインへ進む'); });
+      loginBtnBottom?.addEventListener('click', function () { logClick('会員：ログインへ進む（下部）'); });
+
+    })();
+  </script>
+</body>
+</html>
+
+
+
