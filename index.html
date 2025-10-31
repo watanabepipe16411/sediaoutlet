@@ -1,110 +1,130 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>セディア アウトレット - メンバー限定ランディングページ</title>
-  <meta name="description" content="セディアカスタマーWEB会員限定のアウトレット（在庫処分）紹介ランディングページ。お得な特典・人気商品訴求で会員登録を促します。" />
-  <style>
-    :root{
-      --max-w:1100px;
-      --accent:#ff7f50;         /* コーラルオレンジ */
-      --accent-2:#ffa15e;
-      --highlight:#fff3e6;
-      --muted:#556;
-      --bg-start:#f8fbff;
-      --bg-end:#f0faff;
-      --card:#fff;
-      --radius:14px;
-      --shadow-1: rgba(16,115,203,0.08);
-      font-family:"Noto Sans JP","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      color-scheme:light;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,var(--bg-start),var(--bg-end));color:#072a3f;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>セディア アウトレット - メンバー限定ランディングページ</title>
+<meta name="description" content="セディアカスタマーWEB会員限定のアウトレット紹介ページ。お得な特典・人気商品訴求で会員登録を促します。" />
+<style>
+:root{
+  --max-w:1100px;
+  --accent:#ff7f50;
+  --accent-2:#ffa15e;
+  --muted:#556;
+  --bg-start:#f8fbff;
+  --bg-end:#f0faff;
+  --card:#fff;
+  --radius:14px;
+  --shadow-1: rgba(16,115,203,0.08);
+  font-family:"Noto Sans JP","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:linear-gradient(180deg,var(--bg-start),var(--bg-end));color:#072a3f;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-    /* Background floating blobs */
-    .page-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
-    .blob{position:absolute;border-radius:50%;filter:blur(28px);opacity:0.18;transform-origin:center;animation:blobMove 12s ease-in-out infinite}
-    .b1{width:360px;height:360px;background:linear-gradient(135deg,#9ee7ff,#5ec2ff);left:-80px;top:6%}
-    .b2{width:260px;height:260px;background:linear-gradient(135deg,#7fe1ff,#56b0ff);right:-60px;top:30%;animation-duration:16s;opacity:0.14}
-    .b3{width:180px;height:180px;background:linear-gradient(135deg,#c3f6ff,#9beaff);left:10%;bottom:-60px;animation-duration:20s;opacity:0.12}
-    @keyframes blobMove{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
+/* Background floating blobs */
+.page-bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(28px);opacity:0.18;transform-origin:center;animation:blobMove 12s ease-in-out infinite}
+.b1{width:360px;height:360px;background:linear-gradient(135deg,#9ee7ff,#5ec2ff);left:-80px;top:6%}
+.b2{width:260px;height:260px;background:linear-gradient(135deg,#7fe1ff,#56b0ff);right:-60px;top:30%;animation-duration:16s;opacity:0.14}
+.b3{width:180px;height:180px;background:linear-gradient(135deg,#c3f6ff,#9beaff);left:10%;bottom:-60px;animation-duration:20s;opacity:0.12}
+@keyframes blobMove{0%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
 
-    .container{max-width:var(--max-w);margin:0 auto;padding:30px 20px;position:relative;z-index:2}
+.container{max-width:var(--max-w);margin:0 auto;padding:30px 20px;position:relative;z-index:2}
 
-    /* Header with animated gradient */
-    .site-header{
-      background: linear-gradient(270deg,#ff7f50,#ffa15e,#ff7f50,#ffa15e);
-      background-size: 800% 800%;
-      animation: gradientAnim 15s ease infinite;
-      color:#fff;
-      padding:18px;
-      border-radius:10px;
-      box-shadow:0 8px 25px var(--shadow-1);
-    }
-    @keyframes gradientAnim{
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
+/* Header with animated gradient */
+.site-header{
+  background: linear-gradient(270deg,#ff7f50,#ffa15e,#ff7f50,#ffa15e);
+  background-size: 800% 800%;
+  animation: gradientAnim 15s ease infinite;
+  color:#fff;
+  padding:18px;
+  border-radius:10px;
+  box-shadow:0 8px 25px var(--shadow-1);
+}
+@keyframes gradientAnim{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.header-inner{display:flex;flex-direction:column;gap:4px}
+.logo{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:0.3px}
+.tag{margin:0;color:rgba(255,255,255,0.95);font-weight:600;font-size:0.95rem}
 
-    .header-inner{display:flex;flex-direction:column;gap:4px}
-    .logo{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:0.3px}
-    .tag{margin:0;color:rgba(255,255,255,0.95);font-weight:600;font-size:0.95rem}
+/* Hero */
+.hero{padding:44px 0 18px;position:relative;overflow:visible}
+.hero-inner{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+.hero-text{flex:1;min-width:300px;max-width:640px}
+.hero-image{flex:1;min-width:280px;text-align:right}
+.hero-image .card{display:inline-block;border-radius:14px;padding:14px;background:linear-gradient(180deg,#fff,#fff7f0);box-shadow:0 12px 34px var(--shadow-1);border:1px solid #ffe0b3}
 
-    /* Hero */
-    .hero{padding:44px 0 18px;position:relative;overflow:visible}
-    .hero-inner{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
-    .hero-text{flex:1;min-width:300px;max-width:640px}
-    .hero-image{flex:1;min-width:280px;text-align:right}
-    .hero-image .card{display:inline-block;border-radius:14px;padding:14px;background:linear-gradient(180deg,#fff,#fff7f0);box-shadow:0 12px 34px var(--shadow-1);border:1px solid #ffe0b3}
+h2{font-size:1.7rem;margin:0 0 12px;color:#073a5a}
+p{margin:0 0 12px;color:#093547}
+.note{font-size:0.92rem;color:var(--muted)}
 
-    h2{font-size:1.7rem;margin:0 0 12px;color:#073a5a}
-    p{margin:0 0 12px;color:#093547}
-    .note{font-size:0.92rem;color:var(--muted)}
+.cta-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:1px solid transparent;font-weight:700;transition:transform .18s ease,box-shadow .18s ease;position:relative;overflow:hidden}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 28px var(--shadow-1)}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(255,127,80,0.3)}
+.btn.large{padding:14px 22px;font-size:1.02rem;border-radius:12px}
+.ripple:after{content:"";position:absolute;border-radius:50%;transform:scale(0);opacity:0;pointer-events:none}
+.ripple:active:after{animation:rippleAnim .6s linear;opacity:0.28}
+@keyframes rippleAnim{to{transform:scale(8);opacity:0}}
 
-    .cta-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
-    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:1px solid transparent;font-weight:700;transition:transform .18s ease,box-shadow .18s ease;position:relative;overflow:hidden}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 28px var(--shadow-1)}
-    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(255,127,80,0.3)}
-    .btn.large{padding:14px 22px;font-size:1.02rem;border-radius:12px}
+.card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 22px rgba(9,60,92,0.03);transition:transform .28s cubic-bezier(.2,.9,.3,1),box-shadow .28s}
+.card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 22px 40px rgba(14,98,155,0.08)}
 
-    .ripple:after{content:"";position:absolute;border-radius:50%;transform:scale(0);opacity:0;pointer-events:none}
-    .ripple:active:after{animation:rippleAnim .6s linear;opacity:0.28}
-    @keyframes rippleAnim{to{transform:scale(8);opacity:0}}
+/* Sold items grid */
+.sold-section{padding:26px 0}
+.sold-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;align-items:start}
+.sold-item{background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);text-align:center}
+.sold-item img{border-radius:8px;max-width:100%;height:auto;cursor:zoom-in}
+.sold-caption{margin-top:10px;font-size:0.98rem;color:#073a5a}
+.sold-label{display:block;font-weight:800;margin-top:6px}
+.sold-label.sold{color:#c00;}
+.sold-label.request{color:var(--accent);background:#fff0e6;padding:2px 6px;border-radius:6px;font-size:0.85rem}
 
-    .card{background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 8px 22px rgba(9,60,92,0.03);transition:transform .28s cubic-bezier(.2,.9,.3,1),box-shadow .28s}
-    .card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 22px 40px rgba(14,98,155,0.08)}
+/* Screens */
+.screens{padding:20px 0}
+.screen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:12px}
+.screen-image{display:block;max-width:100%;width:100%;height:auto;border-radius:10px;cursor:zoom-in}
 
-    /* Sold items grid */
-    .sold-section{padding:26px 0}
-    .sold-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;align-items:start}
-    .sold-item{background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);text-align:center}
-    .sold-item img{border-radius:8px;max-width:100%;height:auto;cursor:zoom-in}
-    .sold-caption{margin-top:10px;font-size:0.98rem;color:#073a5a}
-    .sold-label{display:block;font-weight:800;margin-top:6px}
-    .sold-label.sold{color:#c00;}
-    .sold-label.request{color:var(--accent);background:#fff0e6;padding:2px 6px;border-radius:6px;font-size:0.85rem}
+@media (max-width:1000px){
+  .hero-inner{align-items:flex-start}
+  .hero-image{text-align:left}
+  h2{font-size:1.4rem}
+  .sold-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .container{padding:20px 16px}
+  .hero-image img{max-width:100%}
+  .hero-image{order:2}
+  .hero-text{order:1}
+  .sold-grid{grid-template-columns:repeat(1,1fr)}
+}
 
-    @media (max-width:1000px){
-      .hero-inner{align-items:flex-start}
-      .hero-image{text-align:left}
-      h2{font-size:1.4rem}
-      .sold-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:640px){
-      .container{padding:20px 16px}
-      .hero-image img{max-width:100%}
-      .hero-image{order:2}
-      .hero-text{order:1}
-      .sold-grid{grid-template-columns:repeat(1,1fr)}
-    }
-  </style>
+/* Reveal animation */
+.reveal-up{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
+.reveal-right{opacity:0;transform:translateX(24px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.3,1)}
+.reveal-up.is-visible,.reveal-right.is-visible{opacity:1;transform:none}
+.delay-1{transition-delay:.06s}
+.delay-2{transition-delay:.14s}
+.delay-3{transition-delay:.22s}
+.delay-4{transition-delay:.30s}
+.delay-5{transition-delay:.38s}
+</style>
 </head>
 <body>
 
+<!-- Background blobs -->
+<div class="page-bg" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<!-- Header -->
 <header class="site-header">
   <div class="container header-inner">
     <h1 class="logo">SEDIA カスタマー WEB - アウトレット</h1>
@@ -120,12 +140,8 @@
         <h2>お得に、必要な商品を。<br>会員様限定のアウトレットセール</h2>
         <p class="note">※既に会員の方は「ログイン」ボタンからご利用ください。未登録の方は「申込へ進む」からお申し込みください。</p>
         <div class="cta-row">
-          <a class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank">
-            🎁 今すぐ申込（無料・1分で完了）
-          </a>
-          <a class="btn ghost large ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank">
-            すでに会員の方はこちら
-          </a>
+          <a class="btn primary large ripple" href="https://tayori.com/form/ac85b0de2f07677283f15dd60cca9d96ea9bc83d/" target="_blank">今すぐ申込（無料）</a>
+          <a class="btn ghost large ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank">会員ログインはこちら</a>
         </div>
       </div>
       <div class="hero-image reveal-right">
@@ -135,7 +151,47 @@
       </div>
     </div>
   </section>
+
+  <!-- Sold items -->
+  <section class="sold-section container">
+    <h3 class="reveal-up">これまでに売れた商品</h3>
+    <p class="note reveal-up delay-1">下の画像は過去に販売された商品の一例です。</p>
+    <div class="sold-grid reveal-up delay-2">
+      <figure class="sold-item">
+        <img src="TCF6543AM.jpg" data-full="sold1.jpg" alt="TOTO ウォシュレットＳ１Ａ TCF6543AM" class="screen-image" />
+        <figcaption class="sold-caption">TOTO<br>ウォシュレットＳ１Ａ TCF6543AM <span class="sold-label sold">sold out</span></figcaption>
+      </figure>
+      <figure class="sold-item">
+        <img src="TKGG31EZ.jpg" data-full="sold2.jpg" alt="TOTO 台付シングル１３ TKGG31EZ" class="screen-image" />
+        <figcaption class="sold-caption">TOTO<br>台付シングル１３ TKGG31EZ <span class="sold-label sold">sold out</span></figcaption>
+      </figure>
+      <figure class="sold-item">
+        <img src="CS-G321M.jpg" data-full="sold3.jpg" alt="三菱電機 ＩＨクッキングヒーター CS-G321M" class="screen-image" />
+        <figcaption class="sold-caption">三菱電機<br>ＩＨクッキングヒーター CS-G321M <span class="sold-label sold">sold out</span></figcaption>
+      </figure>
+      <figure class="sold-item">
+        <img src="GT-C2062SARX-2BL.jpg" data-full="sold4.jpg" alt="ノーリツ ｴｺｼﾞｮｰｽﾞ GT-C2062SARX-2BL 20A LPG" class="screen-image" />
+        <figcaption class="sold-caption">ノーリツ<br>エコジョーズ GT-C2062SARX-2BL 20A LPG <span class="sold-label sold">sold out</span></figcaption>
+      </figure>
+    </div>
+  </section>
 </main>
+
+<script>
+// Reveal animation on scroll
+function revealOnScroll(){
+  const reveals = document.querySelectorAll('.reveal-up, .reveal-right');
+  const windowHeight = window.innerHeight;
+  reveals.forEach(el=>{
+    const elementTop = el.getBoundingClientRect().top;
+    if(elementTop < windowHeight - 60){
+      el.classList.add('is-visible');
+    }
+  });
+}
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
 
 </body>
 </html>
