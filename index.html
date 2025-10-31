@@ -75,13 +75,13 @@ p{margin:0 0 12px;color:#093547}
 .screen-frame,.screen-image{width:100%;height:auto;border-radius:10px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 12px 30px rgba(11,56,92,0.03);cursor:zoom-in}
 .screen-image.small{max-width:420px}
 
-/* Sold items grid - 強調 */
+/* Sold items grid */
 .sold-section{padding:40px 0;background:rgba(15,155,255,0.05);border-radius:12px;margin-top:24px;}
 .sold-section h3{font-size:1.5rem;color:#0f9bff;}
 .sold-section p{font-size:0.95rem;color:#093547;margin-bottom:18px;}
 .sold-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px;align-items:start}
 
-/* --- すべて同じ長方形に統一 --- */
+/* Sold items - 統一長方形 */
 .sold-item{
   background:var(--card);
   padding:14px;
@@ -93,7 +93,7 @@ p{margin:0 0 12px;color:#093547}
   flex-direction:column;
   justify-content:flex-start;
   align-items:center;
-  height:320px; /* 高さ固定 */
+  height:320px;
 }
 .sold-item img{
   border-radius:8px;
@@ -127,7 +127,7 @@ p{margin:0 0 12px;color:#093547}
   flex: 1 1 auto; 
   max-width: 240px; 
   text-align:center;
-  background: linear-gradient(90deg,#ff9000,#ffc34d); /* オレンジに変更 */
+  background: linear-gradient(90deg,#ff9000,#ffc34d);
   color:#fff;
   border:none;
   box-shadow:0 4px 12px rgba(0,0,0,0.15);
@@ -147,36 +147,17 @@ p{margin:0 0 12px;color:#093547}
 .delay-4{transition-delay:.30s}
 .delay-5{transition-delay:.38s}
 
-/* Lightbox */
-#lightbox {
-  position: fixed;
-  inset: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0,0,0,0.6);
-  z-index: 9999;
-  cursor: zoom-out;
-  overflow: hidden;
+/* Lightbox overlay */
+#lightbox{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.7);z-index:9999;
 }
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 12px;
-  transform: scale(0);
-  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-#lightbox.show img {
-  transform: scale(1);
-}
-#lightbox .lb-caption {
-  position: absolute;
-  bottom: 30px;
-  color: #fff;
-  font-size: 0.95rem;
-  text-align: center;
-  width: 100%;
-}
+#lbContent{position:relative;display:flex;align-items:center;justify-content:center;transition:transform 0.35s ease,opacity 0.35s ease;}
+#lbImage{max-width:90%;max-height:90%;border-radius:12px;cursor:zoom-out;}
+#lbCaption{position:absolute;bottom:4%;left:50%;transform:translateX(-50%);color:#fff;font-size:1rem;text-align:center;max-width:90%;}
+#lbClose{position:absolute;top:20px;right:20px;font-size:2rem;color:#fff;background:none;border:none;cursor:pointer;}
+#lbClose:hover{color:#ffcc00;}
 
 /* Media queries */
 @media (max-width:1000px){.hero-inner{align-items:flex-start}.hero-image{text-align:left}.h2{font-size:1.4rem}.sold-grid{grid-template-columns:repeat(2,1fr)}}
@@ -186,9 +167,12 @@ p{margin:0 0 12px;color:#093547}
 </head>
 <body>
 <!-- Lightbox overlay -->
-<div id="lightbox">
-  <img id="lbImage" src="" alt="">
-  <div class="lb-caption" id="lbCaption"></div>
+<div id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="lb-content" id="lbContent">
+    <button id="lbClose" aria-label="閉じる">&times;</button>
+    <img id="lbImage" src="" alt="" />
+  </div>
+  <div id="lbCaption" aria-hidden="true"></div>
 </div>
 
 <!-- Background blobs -->
@@ -213,8 +197,8 @@ p{margin:0 0 12px;color:#093547}
       <p>長期在庫・型落ち品などを、セディアカスタマーWEB会員様限定でアウトレット価格にて販売します。数量限定、早い者勝ちです。</p>
       <p class="note">※既に会員の方は「ログイン」ボタンからログインしてください。未登録の方は「申込へ進む」からお申し込みください。</p>
       <div class="cta-row">
-        <a id="loginBtn" class="btn primary ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener noreferrer" aria-label="ログイン">会員の方はこちら（ログイン）</a>
-        <a id="applyBtn" class="btn primary ripple" href="https://www.sedia-water.co.jp/solution/sediacustomerweb.html" target="_blank" rel="noopener noreferrer" aria-label="新規申込">申込へ進む（新規登録）</a>
+        <a id="loginBtn" class="btn primary ripple" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank">会員の方はこちら（ログイン）</a>
+        <a id="applyBtn" class="btn primary ripple" href="https://www.sedia-water.co.jp/solution/sediacustomerweb.html" target="_blank">申込へ進む（新規登録）</a>
       </div>
     </div>
     <div class="hero-image reveal-right">
@@ -225,31 +209,29 @@ p{margin:0 0 12px;color:#093547}
   </div>
 </section>
 
-<!-- 販売実績 -->
 <section id="sold" class="sold-section container">
-  <h3 class="reveal-up">これまでに売れた商品</h3>
+  <h3 class="reveal-up">販売実績❄❄</h3>
   <p class="note reveal-up delay-1">下の画像は過去に販売された商品の一例です。</p>
   <div class="sold-grid reveal-up delay-2" role="list">
     <figure class="sold-item" role="listitem">
-      <img src="TCF6543AM.jpg" data-full="sold1.jpg" alt="商品A" class="screen-image" width="320" height="240" />
+      <img src="TCF6543AM.jpg" data-full="TCF6543AM.jpg" alt="商品A" class="screen-image" width="320" height="240" />
       <figcaption class="sold-caption">TOTO<br>ウォシュレットＳ１Ａ TCF6543AM #NW1<span class="sold-label">sold out</span></figcaption>
     </figure>
     <figure class="sold-item" role="listitem">
-      <img src="TKGG31EZ.jpg" data-full="sold2.jpg" alt="商品B" class="screen-image" width="320" height="240" />
+      <img src="TKGG31EZ.jpg" data-full="TKGG31EZ.jpg" alt="商品B" class="screen-image" width="320" height="240" />
       <figcaption class="sold-caption">TOTO<br>台付シングル１３ TKGG31EZ<span class="sold-label">sold out</span></figcaption>
     </figure>
     <figure class="sold-item" role="listitem">
-      <img src="CS-G321M.jpg" data-full="sold3.jpg" alt="商品C" class="screen-image" width="320" height="240" />
+      <img src="CS-G321M.jpg" data-full="CS-G321M.jpg" alt="商品C" class="screen-image" width="320" height="240" />
       <figcaption class="sold-caption">三菱電機<br>ＩＨクッキングヒーター CS-G321M<span class="sold-label">sold out</span></figcaption>
     </figure>
     <figure class="sold-item" role="listitem">
-      <img src="GT-C2062SARX-2BL.jpg" data-full="sold4.jpg" alt="商品D" class="screen-image" width="320" height="240" />
+      <img src="GT-C2062SARX-2BL.jpg" data-full="GT-C2062SARX-2BL.jpg" alt="商品D" class="screen-image" width="320" height="240" />
       <figcaption class="sold-caption">ノーリツ<br>エコジョーズ GT-C2062SARX-2BL 20A LPG<span class="sold-label">sold out</span></figcaption>
     </figure>
   </div>
 </section>
 
-<!-- ご注文までの流れ -->
 <section id="screens" class="screens container">
   <h3 class="reveal-up">ご注文までの流れ</h3>
   <p class="note reveal-up delay-1">下のスクリーンショットはイメージです。クリックすると拡大表示します。</p>
@@ -269,7 +251,6 @@ p{margin:0 0 12px;color:#093547}
   </div>
 </section>
 
-<!-- FAQ -->
 <section id="faq" class="faq container">
   <h3 class="reveal-up">よくある質問（FAQ）</h3>
   <dl class="reveal-up delay-1">
@@ -285,11 +266,10 @@ p{margin:0 0 12px;color:#093547}
 </footer>
 </main>
 
-<!-- 固定フッターCTA -->
 <section class="fixed-footer-cta" aria-label="会員ログイン・新規申込">
   <div class="cta-inner">
-    <a class="btn ripple large" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" rel="noopener" aria-label="会員ログイン">会員ログイン</a>
-    <a class="btn ripple large" href="https://www.sedia-water.co.jp/solution/sediacustomerweb.html" target="_blank" rel="noopener" aria-label="新規申込">申込へ進む（新規登録）</a>
+    <a class="btn ripple large" href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank">会員ログイン</a>
+    <a class="btn ripple large" href="https://www.sedia-water.co.jp/solution/sediacustomerweb.html" target="_blank">申込へ進む（新規登録）</a>
   </div>
 </section>
 
@@ -313,29 +293,38 @@ p{margin:0 0 12px;color:#093547}
 })();
 
 // Lightbox
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImage');
-const lbCaption = document.getElementById('lbCaption');
+const lb = document.getElementById('lightbox'),
+      lbImg = document.getElementById('lbImage'),
+      lbClose = document.getElementById('lbClose'),
+      lbCaption = document.getElementById('lbCaption');
 
 document.querySelectorAll('.screen-image').forEach(img => {
   img.addEventListener('click', (e) => {
     const rect = img.getBoundingClientRect();
-    const clickX = e.clientX;
-    const clickY = e.clientY;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-    lb.style.display = 'flex';
-    lbImg.style.transformOrigin = `${(clickX - rect.left)/rect.width*100}% ${(clickY - rect.top)/rect.height*100}%`;
+    lb.style.display='flex';
     lbImg.src = img.dataset.full || img.src;
     lbCaption.innerText = img.alt || '';
 
-    setTimeout(() => lb.classList.add('show'), 10);
+    // Transform origin for smooth scaling from click position
+    const originX = (x / rect.width) * 100;
+    const originY = (y / rect.height) * 100;
+    lbImg.style.transformOrigin = `${originX}% ${originY}%`;
+    lbImg.style.transform = 'scale(0.1)';
+    requestAnimationFrame(() => { lbImg.style.transition='transform 0.35s ease'; lbImg.style.transform='scale(1)'; });
   });
 });
 
-lb.addEventListener('click', () => {
-  lb.classList.remove('show');
-  setTimeout(() => lb.style.display='none', 350);
-});
+// Close lightbox
+function closeLB() {
+  lbImg.style.transform = 'scale(0.1)';
+  setTimeout(()=>{ lb.style.display='none'; lbImg.style.transition=''; }, 350);
+}
+lbClose.addEventListener('click', closeLB);
+lb.addEventListener('click', e => { if(e.target==lb) closeLB(); });
+lbImg.addEventListener('click', closeLB);
 </script>
 </body>
 </html>
