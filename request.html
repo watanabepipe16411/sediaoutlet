@@ -20,23 +20,25 @@
     header,section,footer { text-align:center; padding:40px 20px; }
     img { max-width:100%; height:auto; display:block; margin:0 auto; }
 
-    /* ▼ 右上ロゴ固定 */
+    /* ▼ 右上ロゴ固定、横ラインなし */
     .header-logo {
-      position:fixed;
-      top:20px;
-      right:20px;
-      width:160px; /* ロゴサイズ調整 */
-      z-index:1000;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 160px;
+      z-index: 1000;
+      /* 横ラインはなし */
     }
 
     .main-img {
-      width:100%;
-      max-width:800px;
-      border-radius:12px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.1);
-      transition:transform 0.3s;
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      margin-top: 60px; /* ロゴ下に余白を持たせ、下がって見える */
     }
-    .main-img:hover { transform:scale(1.02); }
+    .main-img:hover { transform: scale(1.02); }
 
     /* ボタン */
     .btn {
@@ -75,8 +77,8 @@
       display:flex;
       justify-content:center;
       flex-wrap:wrap;
-      gap:24px; /* ← 横間隔を少し広め */
-      margin-top:20px; /* ← 上の文章との縦間隔を狭めた */
+      gap:24px; /* 横間隔 */
+      margin-top:10px; /* 上の文章との縦間隔を半分に */
     }
     .circle-item {
       width:160px;
@@ -132,7 +134,7 @@
     .solution-item img {
       width:260px;
       height:auto;
-      object-fit:contain; /* 全体表示 */
+      object-fit:contain;
       border-radius:10px;
       margin-left:auto;
     }
@@ -197,10 +199,10 @@
     }
 
     @media(max-width:700px){
-      .solution-item{flex-direction:column;text-align:center;}
-      .solution-item img{margin:16px auto 0;}
-      .solution-text{padding:0;}
-      .header-logo{width:120px;top:10px;right:10px;}
+      .solution-item { flex-direction:column;text-align:center; }
+      .solution-item img { margin:16px auto 0; }
+      .solution-text { padding:0; }
+      .header-logo { width:120px; top:10px; right:10px; }
     }
   </style>
 </head>
@@ -212,7 +214,6 @@
   <!-- メイン画像 -->
   <header>
     <img src="SCW1.JPG" alt="SEDIAカスタマーWEB" class="main-img">
-    <!-- 新規申込ボタン -->
     <a href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" class="btn">
       新規お申込みはこちら
     </a>
@@ -260,7 +261,7 @@
     すべてSEDIAカスタマーWEBで解決できます！
   </div>
 
- <!-- 6つの説明枠 -->
+  <!-- 6つの説明枠 -->
   <section>
     <div class="solution-wrap">
       <div class="solution-item">
@@ -364,10 +365,9 @@
         const open=a.style.display==='block';
         document.querySelectorAll('.faq-a').forEach(el=>el.style.display='none');
         document.querySelectorAll('.faq-q span').forEach(sp=>sp.textContent='＋');
-        if(!open){a.style.display='block';s.textContent='－';}
+        if(!open){a.style.display='block'; s.textContent='－';}
       });
     });
   </script>
 </body>
 </html>
-
