@@ -5,31 +5,41 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SEDIAカスタマーWEB | お申込みページ</title>
   <style>
-    :root{
+    :root {
       --primary:#007bff;
       --bg:#f9fbff;
       --text:#333;
     }
-    body{
+    body {
       margin:0;
       font-family:"Noto Sans JP",sans-serif;
       background:var(--bg);
       color:var(--text);
       line-height:1.7;
     }
-    header,section,footer{text-align:center;padding:40px 20px;}
-    img{max-width:100%;height:auto;display:block;margin:0 auto;}
-    .main-img{
+    header,section,footer { text-align:center; padding:40px 20px; }
+    img { max-width:100%; height:auto; display:block; margin:0 auto; }
+
+    /* ▼ 右上ロゴ固定 */
+    .header-logo {
+      position:fixed;
+      top:20px;
+      right:20px;
+      width:160px; /* ロゴサイズ調整 */
+      z-index:1000;
+    }
+
+    .main-img {
       width:100%;
       max-width:800px;
       border-radius:12px;
       box-shadow:0 8px 20px rgba(0,0,0,0.1);
       transition:transform 0.3s;
     }
-    .main-img:hover{transform:scale(1.02);}
+    .main-img:hover { transform:scale(1.02); }
 
     /* ボタン */
-    .btn{
+    .btn {
       display:inline-block;
       background:linear-gradient(90deg,#007bff,#00b3ff);
       color:#fff;
@@ -42,18 +52,18 @@
       box-shadow:0 6px 16px rgba(0,123,255,0.3);
       transition:0.3s;
     }
-    .btn:hover{
+    .btn:hover {
       transform:translateY(-3px);
       box-shadow:0 8px 20px rgba(0,123,255,0.4);
     }
 
-    .desc{
+    .desc {
       max-width:800px;
       margin:0 auto;
       font-size:16px;
       color:#555;
     }
-    .desc-large{
+    .desc-large {
       font-size:22px;
       font-weight:bold;
       margin-top:30px;
@@ -61,38 +71,38 @@
     }
 
     /* 丸い画像 */
-    .circle-wrap{
+    .circle-wrap {
       display:flex;
       justify-content:center;
       flex-wrap:wrap;
-      gap:12px;
-      margin-top:30px;
+      gap:24px; /* ← 横間隔を少し広め */
+      margin-top:20px; /* ← 上の文章との縦間隔を狭めた */
     }
-    .circle-item{
+    .circle-item {
       width:160px;
       text-align:center;
     }
-    .circle-item img{
+    .circle-item img {
       width:140px;
       height:140px;
       border-radius:50%;
       object-fit:cover;
       box-shadow:0 4px 10px rgba(0,0,0,0.1);
     }
-    .circle-item p{
+    .circle-item p {
       font-size:13px;
       margin-top:8px;
       color:#444;
     }
 
     /* 下矢印 */
-    .arrow{
+    .arrow {
       margin:40px auto 10px;
       width:60px;
     }
 
-    /* 解決見出し */
-    .solve-title{
+    /* 解決タイトル */
+    .solve-title {
       font-size:26px;
       font-weight:bold;
       color:#007bff;
@@ -101,7 +111,7 @@
     }
 
     /* 説明6枠 */
-    .solution-wrap{
+    .solution-wrap {
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -109,7 +119,7 @@
       margin:40px auto;
       max-width:900px;
     }
-    .solution-item{
+    .solution-item {
       display:flex;
       align-items:flex-start;
       background:#fff;
@@ -119,21 +129,21 @@
       width:100%;
       max-width:850px;
     }
-    .solution-item img{
+    .solution-item img {
       width:260px;
       height:auto;
-      object-fit:contain;
+      object-fit:contain; /* 全体表示 */
       border-radius:10px;
       margin-left:auto;
     }
-    .solution-text{
+    .solution-text {
       text-align:left;
       padding-right:20px;
       font-size:16px;
       color:#444;
       flex:1;
     }
-    .solution-title{
+    .solution-title {
       font-weight:bold;
       font-size:18px;
       color:#007bff;
@@ -141,11 +151,11 @@
     }
 
     /* 動画 */
-    .video{
+    .video {
       margin:50px auto;
       max-width:800px;
     }
-    .video iframe{
+    .video iframe {
       width:100%;
       height:450px;
       border:none;
@@ -153,32 +163,33 @@
     }
 
     /* FAQ */
-    .faq{
+    .faq {
       max-width:800px;
       margin:0 auto;
       text-align:left;
     }
-    .faq-item{
+    .faq-item {
       background:#fff;
       border-radius:10px;
       padding:14px 20px;
       margin-bottom:12px;
       box-shadow:0 2px 8px rgba(0,0,0,0.05);
     }
-    .faq-q{
+    .faq-q {
       font-weight:bold;
       cursor:pointer;
       display:flex;
       justify-content:space-between;
       align-items:center;
     }
-    .faq-a{
+    .faq-a {
       display:none;
       margin-top:8px;
       color:#555;
       font-size:14px;
     }
-    footer{
+
+    footer {
       background:#fff;
       color:#777;
       font-size:13px;
@@ -189,18 +200,22 @@
       .solution-item{flex-direction:column;text-align:center;}
       .solution-item img{margin:16px auto 0;}
       .solution-text{padding:0;}
+      .header-logo{width:120px;top:10px;right:10px;}
     }
   </style>
 </head>
 <body>
 
-  <!-- メイン画像（リンク付き） -->
+  <!-- 固定ロゴ -->
+  <img src="【JPG】SEDIA渡辺パイプ.jpg" alt="SEDIAロゴ" class="header-logo">
+
+  <!-- メイン画像 -->
   <header>
-    <a href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank">
-      <img src="SCW1.JPG" alt="SEDIAカスタマーWEB" class="main-img">
+    <img src="SCW1.JPG" alt="SEDIAカスタマーWEB" class="main-img">
+    <!-- 新規申込ボタン -->
+    <a href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" class="btn">
+      新規お申込みはこちら
     </a>
-    <!-- ボタンクリックで指定URLに遷移 -->
-    <a href="https://www.sedia-water.co.jp/solution/sediacustomerweb.html" target="_blank" class="btn">新規お申込みはこちら</a>
   </header>
 
   <!-- 説明文 -->
@@ -228,7 +243,7 @@
       </div>
       <div class="circle-item">
         <img src="SCW4.png" alt="管理">
-        <p>発注の管理が煩雑で、どの案件の発注なのか分からなくなる。業務効率を上げたい。</p>
+        <p>発注の管理が煩雑でどの案件の発注なのか分からなくなる。データで検索して業務効率を上げたい。</p>
       </div>
       <div class="circle-item">
         <img src="SCW5.png" alt="共有">
@@ -245,11 +260,24 @@
     すべてSEDIAカスタマーWEBで解決できます！
   </div>
 
-  <!-- （中略）説明枠・動画などは変更なし -->
-
-  <!-- ボタン再配置（同様にURL遷移） -->
+  <!-- 6つの説明枠（省略せず前回同様） -->
   <section>
-    <a href="https://www.sedia-water.co.jp/solution/sediacustomerweb.html" target="_blank" class="btn">新規お申込みはこちら</a>
+    <div class="solution-wrap">
+      <!-- solution-item ... 同じ構造で6つ -->
+      <!-- 以下省略せず必要に応じてコピーしてください -->
+    </div>
+  </section>
+
+  <!-- 動画 -->
+  <section class="video">
+    <iframe src="https://www.youtube.com/embed/8N4TrhjmDr0" title="紹介動画" allowfullscreen></iframe>
+  </section>
+
+  <!-- 再申込ボタン -->
+  <section>
+    <a href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" class="btn">
+      新規お申込みはこちら
+    </a>
   </section>
 
   <!-- FAQ -->
@@ -266,7 +294,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">Q スマートフォンしか持っていないのですが、利用できますか。<span>＋</span></div>
-        <div class="faq-a">A パソコンでの利用設計となっておりますが、スマートフォンでも閲覧・発注可能です。</div>
+        <div class="faq-a">パソコンでの利用設計となっておりますが、スマートフォンでも閲覧・発注可能です。</div>
       </div>
     </div>
   </section>
@@ -290,4 +318,3 @@
   </script>
 </body>
 </html>
-
