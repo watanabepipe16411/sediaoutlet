@@ -20,14 +20,25 @@
     header,section,footer { text-align:center; padding:40px 20px; }
     img { max-width:100%; height:auto; display:block; margin:0 auto; }
 
-    /* ▼ 右上ロゴ固定、横ラインなし */
-    .header-logo {
+    /* ▼ 固定ヘッダー背景 + 右上ロゴ */
+    .header-fixed {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 160px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px; /* 高さ調整 */
+      background-color: #fff; /* 白背景で固定 */
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 20px;
       z-index: 1000;
-      /* 横ラインはなし */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .header-logo {
+      width: 160px;
+      height: auto;
     }
 
     .main-img {
@@ -36,7 +47,7 @@
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       transition: transform 0.3s;
-      margin-top: 60px; /* ロゴ下に余白を持たせ、下がって見える */
+      margin-top: 100px; /* 固定ヘッダー下に配置 */
     }
     .main-img:hover { transform: scale(1.02); }
 
@@ -202,18 +213,23 @@
       .solution-item { flex-direction:column;text-align:center; }
       .solution-item img { margin:16px auto 0; }
       .solution-text { padding:0; }
-      .header-logo { width:120px; top:10px; right:10px; }
+      .header-fixed { height:60px; padding:0 10px; }
+      .header-logo { width:120px; }
+      .main-img { margin-top:80px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 固定ロゴ -->
-  <img src="【JPG】SEDIA渡辺パイプ.jpg" alt="SEDIAロゴ" class="header-logo">
+  <!-- 固定ヘッダー背景 + 右上ロゴ -->
+  <div class="header-fixed">
+    <img src="【JPG】SEDIA渡辺パイプ.jpg" alt="SEDIAロゴ" class="header-logo">
+  </div>
 
   <!-- メイン画像 -->
   <header>
     <img src="SCW1.JPG" alt="SEDIAカスタマーWEB" class="main-img">
+    <!-- 新規申込ボタン -->
     <a href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank" class="btn">
       新規お申込みはこちら
     </a>
@@ -365,7 +381,7 @@
         const open=a.style.display==='block';
         document.querySelectorAll('.faq-a').forEach(el=>el.style.display='none');
         document.querySelectorAll('.faq-q span').forEach(sp=>sp.textContent='＋');
-        if(!open){a.style.display='block'; s.textContent='－';}
+        if(!open){a.style.display='block';s.textContent='－';}
       });
     });
   </script>
