@@ -24,20 +24,28 @@
       max-width:800px;
       border-radius:12px;
       box-shadow:0 8px 20px rgba(0,0,0,0.1);
+      transition:transform 0.3s;
     }
+    .main-img:hover{transform:scale(1.02);}
+
+    /* ボタン */
     .btn{
       display:inline-block;
-      background:var(--primary);
+      background:linear-gradient(90deg,#007bff,#00b3ff);
       color:#fff;
-      padding:14px 32px;
-      border-radius:50px;
+      padding:20px 60px;
+      border-radius:60px;
       text-decoration:none;
       font-weight:bold;
-      margin:24px 0;
-      box-shadow:0 4px 12px rgba(0,123,255,0.2);
-      transition:0.2s;
+      font-size:20px;
+      margin:32px 0;
+      box-shadow:0 6px 16px rgba(0,123,255,0.3);
+      transition:0.3s;
     }
-    .btn:hover{background:#0056b3;}
+    .btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 20px rgba(0,123,255,0.4);
+    }
 
     .desc{
       max-width:800px;
@@ -57,8 +65,8 @@
       display:flex;
       justify-content:center;
       flex-wrap:wrap;
-      gap:24px;
-      margin-top:40px;
+      gap:12px; /* ← 間隔を狭めた */
+      margin-top:30px;
     }
     .circle-item{
       width:160px;
@@ -72,7 +80,7 @@
       box-shadow:0 4px 10px rgba(0,0,0,0.1);
     }
     .circle-item p{
-      font-size:14px;
+      font-size:13px;
       margin-top:8px;
       color:#444;
     }
@@ -85,10 +93,11 @@
 
     /* 解決見出し */
     .solve-title{
-      font-size:24px;
+      font-size:26px;
       font-weight:bold;
       color:#007bff;
-      margin-top:10px;
+      text-align:center; /* ←中央寄せ追加 */
+      margin-top:20px;
     }
 
     /* 説明6枠 */
@@ -96,24 +105,24 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:24px;
+      gap:28px;
       margin:40px auto;
       max-width:900px;
     }
     .solution-item{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       background:#fff;
       border-radius:12px;
       box-shadow:0 4px 16px rgba(0,0,0,0.05);
-      padding:16px;
+      padding:24px;
       width:100%;
       max-width:850px;
     }
     .solution-item img{
-      width:160px;
-      height:110px;
-      object-fit:cover;
+      width:260px;
+      height:auto;
+      object-fit:contain; /* ← 全体表示 */
       border-radius:10px;
       margin-left:auto;
     }
@@ -122,6 +131,13 @@
       padding-right:20px;
       font-size:16px;
       color:#444;
+      flex:1;
+    }
+    .solution-title{
+      font-weight:bold;
+      font-size:18px;
+      color:#007bff;
+      margin-bottom:6px;
     }
 
     /* 動画 */
@@ -178,9 +194,11 @@
 </head>
 <body>
 
-  <!-- メイン画像 -->
+  <!-- メイン画像（リンク付き） -->
   <header>
-    <img src="SCW1.JPG" alt="SEDIAカスタマーWEB" class="main-img">
+    <a href="https://www.sedia-customerweb.com/common/com/login.xhtml" target="_blank">
+      <img src="SCW1.JPG" alt="SEDIAカスタマーWEB" class="main-img">
+    </a>
     <a href="#contact" class="btn">新規お申込みはこちら</a>
   </header>
 
@@ -192,7 +210,7 @@
     </p>
     <p class="desc-large">
       ＼受発注・管理業務のご担当者さま／<br>
-こんなお悩みございませんか？
+      こんなお悩みございませんか？
     </p>
   </section>
 
@@ -230,29 +248,57 @@
   <section>
     <div class="solution-wrap">
       <div class="solution-item">
-        <div class="solution-text">渡辺パイプからのお見積がご自身のパソコンやタブレットでどこでもご確認いただけるため、事務所だけでなく現場でもご確認いただけます。またWEB上での確認になるため、お見積書の印刷費・紙代の削減にも貢献できます。</div>
+        <div class="solution-text">
+          <div class="solution-title">「WEB上で見積書の確認ができる</div>
+          渡辺パイプからのお見積がご自身のパソコンやタブレットでどこでもご確認いただけるため、
+          事務所だけでなく現場でもご確認いただけます。またWEB上での確認になるため、
+          お見積書の印刷費・紙代の削減にも貢献できます。
+        </div>
         <img src="SCW6.png" alt="顧客管理">
       </div>
+
       <div class="solution-item">
-        <div class="solution-text">SEDIAカスタマーWEBは、会社ごとに管理者ユーザーの他、一般ユーザー登録を行うことができます。そのため、見積や発注内容などの情報共有の手間がなくなり、業務時間の削減にも貢献できます。</div>
+        <div class="solution-text">
+          <div class="solution-title">社内への情報共有が便利に</div>
+          SEDIAカスタマーWEBは、会社ごとに管理者ユーザーの他、一般ユーザー登録を行うことができます。
+          そのため、見積や発注内容などの情報共有の手間がなくなり、業務時間の削減にも貢献できます。
+        </div>
         <img src="SCW7.png" alt="点検予約">
       </div>
+
       <div class="solution-item">
-        <div class="solution-text">SEDIAカスタマーWEBは、会社ごとに管理者ユーザーの他、一般ユーザー登録を行うことができます。そのため、見積や発注内容などの情報共有の手間がなくなり、業務時間の削減にも貢献できます。</div>
+        <div class="solution-text">
+          <div class="solution-title">WEB上で商品発注ができる</div>
+          発注・納期・履歴をデータで管理し、検索で必要な情報をすぐに確認できます。
+          管理ミスを防ぎ、スムーズな業務を実現します。
+        </div>
         <img src="SCW8.png" alt="請求管理">
       </div>
-      <div class="solution-item">
-        <div class="solution-text">渡辺パイプよりご注文いただいたお見積から納期まで、SEDIAカスタマーWEBで一元管理できます。現場名や日付から検索できるので、確認したい見積書を探すスピードが格段に早くなります。
 
-※見積は3ヵ月以内、納品書は1年間のデータが閲覧可能です。</div>
+      <div class="solution-item">
+        <div class="solution-text">
+          <div class="solution-title">注文履歴や納期まで一元管理できる</div>
+          渡辺パイプよりご注文いただいたお見積から納期まで、SEDIAカスタマーWEBで一元管理できます。
+          現場名や日付から検索できるので、確認したい見積書を探すスピードが格段に早くなります。
+          <br>※見積は3ヵ月以内、納品書は1年間のデータが閲覧可能です。
+        </div>
         <img src="SCW9.png" alt="問い合わせ管理">
       </div>
+
       <div class="solution-item">
-        <div class="solution-text">お客さまが渡辺パイプによくご依頼いただく商品をカンタンに発注できる仕組みです。テンプレートを選択し、発注数と現場を入力するだけで発注可能です。もちろん都度新しいお届け先を入力することもできます。</div>
+        <div class="solution-text">
+          <div class="solution-title">「いつもの商品」をカンタン発注</div>
+          よくご依頼いただく商品をカンタンに発注できる仕組みです。
+          テンプレートを選択し、発注数と現場を入力するだけで発注可能です。
+        </div>
         <img src="SCW10.png" alt="スマホ対応">
       </div>
+
       <div class="solution-item">
-        <div class="solution-text">SEDIAカスタマーWEBからのご発注に限らず、渡辺パイプの出荷予定の商品が確認できます。現場名や品名・品番などで絞り込みも可能です。</div>
+        <div class="solution-text">
+          <div class="solution-title">商品の配送予定も確認できる</div>
+          出荷予定の商品がすぐ確認できます。現場名・品番での絞り込みも可能です。
+        </div>
         <img src="SCW11.png" alt="サポート">
       </div>
     </div>
@@ -282,7 +328,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">Q スマートフォンしか持っていないのですが、利用できますか。<span>＋</span></div>
-        <div class="faq-a">パソコンでの利用設計となっております。スマートフォンでも閲覧、発注可能ですが、パソコン用の画面を見ていただくため、文字などが小さくなります。</div>
+        <div class="faq-a">パソコンでの利用設計となっておりますが、スマートフォンでも閲覧・発注可能です。</div>
       </div>
     </div>
   </section>
@@ -306,5 +352,3 @@
   </script>
 </body>
 </html>
-
-
